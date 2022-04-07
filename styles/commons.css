@@ -1,0 +1,55 @@
+/* variables */
+:root {
+  --primaryColor: #f3deb7;
+  --textSecondary: #9d9d98;
+  --bgPrimary: #232323;
+  --bgSecondary: #323232;
+  --blur1: blur(14px);
+  --blur2: blur(64px);
+}
+
+/* colors */
+
+* {
+  color: #ffffff;
+}
+
+.t-p {
+  color: #ffffff;
+}
+
+.t-s {
+  color: var(--textSecondary);
+}
+
+.bg-p {
+  background-color: var(--bgPrimary);
+}
+
+.bg-s {
+  background-color: var(--bgSecondary);
+}
+
+/* blur */
+
+.blur-1 {
+  filter: var(--blur1);
+}
+
+/* overlay */
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(14px);
+  z-index: -999999999;
+}
+
+/* background */
+
+.overlay {
+}
