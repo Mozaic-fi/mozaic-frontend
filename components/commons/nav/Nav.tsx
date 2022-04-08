@@ -11,11 +11,11 @@ const Nav = () => {
   const { walletConnected, removeWallet } = useAuth();
   const { height, width } = useWindowDimensions();
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+
   const handleMenu = () => {
     setShowMenu(!showMenu);
-    console.log(showMenu);
   };
 
   const handleWalletModal = () => {
@@ -93,7 +93,10 @@ const Nav = () => {
                     onClick={handleWalletModal}
                     className='nav-btn-primary compactBtn'
                   >
-                    <img src='/assets/icons/ico.wallet.svg' alt='' />
+                    <img
+                      src='/assets/icons/nav/ico.connectwallet.compact.svg'
+                      alt=''
+                    />
                   </button>
                 )}
               </>
@@ -106,9 +109,12 @@ const Nav = () => {
                 ) : (
                   <button
                     onClick={removeWallet}
-                    className='nav-btn-primary compactBtn'
+                    className='nav-btn-primary compactBtn df-c'
                   >
-                    <img src='/assets/icons/ico.wallet.svg' alt='' />
+                    <img
+                      src='/assets/icons/nav/ico.connectwallet.compact.svg'
+                      alt='connect wallet'
+                    />
                   </button>
                 )}
               </>
@@ -121,6 +127,17 @@ const Nav = () => {
           </div>
         </div>
       </header>
+      {showMenu && (
+        <div
+          onClick={handleMenu}
+          style={{
+            backgroundColor: '#00000010',
+            position: 'absolute',
+            zIndex: 'inherit',
+          }}
+          className='w-f h-f'
+        ></div>
+      )}
       {isOpen && <ConnectWalletModal setIsOpen={setIsOpen} />}
       <style jsx>
         {`
@@ -201,6 +218,11 @@ const Nav = () => {
 
           .nav-btn-menu:hover {
             background-color: var(--bgPrimary);
+          }
+
+          .nav-btn-primary.compactBtn:hover > img {
+            filter: invert(0%) sepia(4%) saturate(221%) hue-rotate(89deg)
+              brightness(10%) contrast(73%);
           }
 
           .nav-btn-primary {

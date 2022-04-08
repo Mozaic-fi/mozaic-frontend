@@ -5,7 +5,7 @@ const Menu = () => {
     id: any;
     name: string;
     path: string;
-    imgSrc: string;
+    icoSrc: string;
   }
 
   const menuItems: Array<MenuItem> = [
@@ -13,43 +13,43 @@ const Menu = () => {
       id: 1,
       name: 'Mozaic',
       path: '/home',
-      imgSrc: '/assets/icons/navmenu/ico.menu.home.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.home.svg',
     },
     {
       id: 2,
       name: 'General Feedback',
       path: '/feedback',
-      imgSrc: '/assets/icons/navmenu/ico.menu.feedback.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.feedback.svg',
     },
     {
       id: 3,
       name: 'Bug Report',
       path: '/report',
-      imgSrc: '/assets/icons/navmenu/ico.menu.bug.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.bug.svg',
     },
     {
       id: 4,
       name: 'User',
       path: '/user',
-      imgSrc: '/assets/icons/navmenu/ico.menu.user.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.user.svg',
     },
     {
       id: 5,
       name: 'Governance',
       path: '/governance',
-      imgSrc: '/assets/icons/navmenu/ico.menu.governance.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.governance.svg',
     },
   ];
 
   return (
     <>
       <div className='menu-overlay'></div>
-      <div className='menu-container bg-dark darker-shadow'>
+      <div className='menu-container bg-card-primary glow blur-2'>
         {menuItems.map((item) => (
           <Link key={item.id} href={item.path}>
             <div className='menu-items'>
               <div className='iconholder-menu'>
-                <img src={item.imgSrc} alt='' />
+                <img src={item.icoSrc} alt='' />
               </div>
               <p>{item.name}</p>
             </div>

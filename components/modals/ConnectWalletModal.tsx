@@ -4,7 +4,7 @@ import Modal from './Modal';
 const ConnectWalletModal = ({ setIsOpen }: any) => {
   const { walletConnected, addWallet, removeWallet } = useAuth();
 
-  const handleConnectWallet = (wallet: number) => {
+  const handleConnectWallet = (wallet: number): void => {
     if (wallet === 0) {
       console.log('walletconnect clicked');
     }
@@ -18,14 +18,16 @@ const ConnectWalletModal = ({ setIsOpen }: any) => {
   return (
     <>
       <Modal title='Connect Wallet' closeModal={setIsOpen}>
-        <div onClick={() => handleConnectWallet(0)} className='walletbtn'>
-          <img src='/assets/icons/wallets/ico.walletconnect.svg' alt='' />
-          <p>WALLET CONNECT</p>
-        </div>
-        <div onClick={() => handleConnectWallet(1)} className='walletbtn'>
-          <img src='/assets/icons/wallets/ico.metamask.svg' alt='' />
-          <p>META MASK</p>
-        </div>
+        <>
+          <div onClick={() => handleConnectWallet(0)} className='walletbtn'>
+            <img src='/assets/icons/wallets/ico.walletconnect.svg' alt='' />
+            <p>WALLET CONNECT</p>
+          </div>
+          <div onClick={() => handleConnectWallet(1)} className='walletbtn'>
+            <img src='/assets/icons/wallets/ico.metamask.svg' alt='' />
+            <p>META MASK</p>
+          </div>
+        </>
       </Modal>
 
       <style jsx>

@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app';
 
 import '../styles/globals.css';
 import '../styles/commons.css';
+import '../styles/transitions.css';
+import '../styles/layout.css';
 // import '../components/common/nav/Nav.scss';
 // import '../components/products/Card.scss';
 // import './products.scss';

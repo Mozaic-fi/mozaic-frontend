@@ -1,9 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Card from '../components/products/Card';
 import styles from '../styles/Home.module.css';
 
-type Product = {
+export type Product = {
   id: any;
   name: string;
   icoSrc: string;
@@ -21,13 +22,13 @@ type Product = {
 };
 
 const Home: NextPage = () => {
-  let prodInfo: Product[] | null = null;
+  let products: Product[] | null = null;
 
-  prodInfo = [
+  products = [
     {
       id: 1,
       name: 'Avalanche Majors',
-      icoSrc: '/assets/icons/ico.avalanchemajor.svg',
+      icoSrc: '/assets/icons/products/ico.avalanchemajor.svg',
       position: 29,
       currentDeposit: 3946.31,
       maxCapacity: 15500.0,
@@ -60,7 +61,7 @@ const Home: NextPage = () => {
     {
       id: 2,
       name: 'T-YVUSDC- P-ETH',
-      icoSrc: '/assets/icons/ico.T-YVUSDC- P-ETH.svg',
+      icoSrc: '/assets/icons/products/ico.T-YVUSDC- P-ETH.svg',
       position: 12,
       currentDeposit: 6632.31,
       maxCapacity: 12240.0,
@@ -93,7 +94,7 @@ const Home: NextPage = () => {
     {
       id: 3,
       name: 'T-ETH-C',
-      icoSrc: '/assets/icons/ico.T-ETH-C.svg',
+      icoSrc: '/assets/icons/products/ico.T-ETH-C.svg',
       position: 20,
       currentDeposit: 4632.31,
       maxCapacity: 13500.0,
@@ -134,16 +135,28 @@ const Home: NextPage = () => {
       </Head>
       <div className='container'>
         <div className='page-title'>
-          <h1>Products</h1>
+          <h1 className='pt-t'>Products</h1>
         </div>
 
         <div className='card-container'>
-          {prodInfo.map((product) => (
-            <p key={product.id}>{product.name}</p>
-            // <Card {...product} key={product.prodID} />
+          {products.map((product) => (
+            <Card {...product} key={product.id} />
           ))}
         </div>
       </div>
+
+      <style jsx>
+        {`
+          .card-container {
+            justify-content: center;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            flex-wrap: wrap;
+          }
+        `}
+      </style>
     </>
   );
 };

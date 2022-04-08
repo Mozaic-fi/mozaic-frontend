@@ -5,10 +5,18 @@ const Modal = ({
   w = '300px',
   children,
   titleImgSrc,
-}: any) => {
-  const [open, setOpen] = useState(true);
+}: {
+  title: string;
+  closeModal: Function;
+  w?: string;
+  children: JSX.Element;
+  titleImgSrc?: string;
+}) => {
+  const [open, setOpen] = useState<boolean>(true);
 
-  const handleModal = () => {
+  // Close modal
+
+  const handleModal = (): void => {
     setOpen(false);
     setTimeout(() => {
       closeModal(false);
@@ -18,7 +26,7 @@ const Modal = ({
   return (
     <>
       <div
-        className={`overlay ${open ? 'open' : 'close'}`}
+        className={`overlay df-c ${open ? 'open' : 'close'}`}
         onClick={handleModal}
       >
         <div
@@ -29,11 +37,11 @@ const Modal = ({
             <img
               className='btn-close'
               onClick={handleModal}
-              src='/assets/icons/ico.close.svg'
+              src='/assets/icons/common/ico.close.svg'
               alt=''
             />
             <div>
-              {titleImgSrc && <img src='' alt='' />}
+              {titleImgSrc && <img src={titleImgSrc} alt='' />}
               <h3 className='ff-1 fs-xl'>{title}</h3>
             </div>
           </div>
@@ -58,11 +66,44 @@ const Modal = ({
             animation: slide 0.5s ease 0s 1 forwards;
           }
 
+          .modal-container.close {
+            animation: slide-rev 0.5s ease 0s 1 backwards;
+          }
+
+          .overlay.open {
+            animation: fade-overlay 0.5s ease 0s 1 forwards;
+          }
+
+          .overlay.close {
+            animation: fade-overlay-rev 0.5s ease 0s 1 backwards;
+          }
+
           .modal-header {
             margin-top: 12;
             margin-bottom: 36px;
             text-align: center;
             color: white;
+          }
+
+          .btn-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: transparent;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 12px;
+          }
+
+          .btn-close:hover {
+            filter: invert(88%) sepia(27%) saturate(401%) hue-rotate(345deg)
+              brightness(800%) contrast(91%);
           }
         `}
       </style>

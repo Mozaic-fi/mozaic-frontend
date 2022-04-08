@@ -17,11 +17,12 @@ const Layout = ({ children }: Props) => {
           .bg-img {
             position: fixed;
             top: -0px;
-            left: -20px;
-            height: 105vh;
-            width: 105vw;
+            right: -20px;
+            height: 120vh;
+            width: 120vw;
             background-image: url('/assets/images/bg.img.primary.png');
             background-size: cover;
+            background-position: center;
             z-index: -9999999999;
           }
 

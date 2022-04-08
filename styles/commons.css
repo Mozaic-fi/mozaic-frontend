@@ -6,6 +6,7 @@
   --bgSecondary: #323232;
   --blur1: blur(14px);
   --blur2: blur(64px);
+  --glowPrimary: #f3deb750;
 }
 
 /* colors */
@@ -30,6 +31,20 @@
   background-color: var(--bgSecondary);
 }
 
+/* text */
+
+.pt-t {
+  font-size: 3.75rem;
+  font-weight: 200;
+  color: var(--textSecondary);
+  opacity: 0.4;
+}
+
+.ct-t {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 /* blur */
 
 .blur-1 {
@@ -52,4 +67,39 @@
 /* background */
 
 .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #00000050;
+  backdrop-filter: blur(40px);
+  z-index: 99999999;
+  animation: fade-overlay 0.5s;
 }
+
+.bg-p {
+  background-color: var(--bgPrimary);
+}
+
+.bg-s {
+  background-color: var(--bgSecondary);
+}
+
+.bg-card-primary {
+  background-color: var(--bgPrimary);
+}
+
+/* glow */
+
+.glow {
+  filter: drop-shadow(0px 0px 20px var(--glowPrimary));
+  animation: glow 0.5s ease forwards;
+}
+
+.glow-rev {
+  filter: drop-shadow(0px 0px 20px var(--glowPrimary));
+  animation: glow 0.5s backwards;
+}
+
+/* shadow */
