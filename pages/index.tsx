@@ -60,7 +60,7 @@ const Home: NextPage = () => {
     },
     {
       id: 2,
-      name: 'T-YVUSDC- P-ETH',
+      name: 'T-YVUSDC-P-ETH',
       icoSrc: '/assets/icons/products/ico.T-YVUSDC- P-ETH.svg',
       position: 12,
       currentDeposit: 6632.31,
@@ -148,11 +148,13 @@ const Home: NextPage = () => {
       <style jsx>
         {`
           .card-container {
+            margin-top: 64px;
+            margin-bottom: 64px;
             justify-content: center;
             width: 100%;
             display: flex;
             flex-direction: row;
-            gap: 30px;
+            gap: 60px 30px;
             flex-wrap: wrap;
           }
         `}

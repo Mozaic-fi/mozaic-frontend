@@ -23,6 +23,22 @@
   color: var(--textSecondary);
 }
 
+.t-h {
+  color: var(--primaryColor);
+}
+
+.fw-b {
+  font-weight: bold;
+}
+
+.fw-l {
+  font-weight: 200;
+}
+
+.fw-eb {
+  font-weight: 700;
+}
+
 .bg-p {
   background-color: var(--bgPrimary);
 }
@@ -34,6 +50,7 @@
 /* text */
 
 .pt-t {
+  margin-top: 120px;
   font-size: 3.75rem;
   font-weight: 200;
   color: var(--textSecondary);
@@ -43,6 +60,22 @@
 .ct-t {
   font-size: 1.25rem;
   font-weight: bold;
+}
+
+.subtitle {
+  color: var(--textSecondary);
+  font-size: 0.75rem;
+}
+
+.num1 {
+  font-size: 1.625rem;
+  font-weight: 300;
+}
+
+.num2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primaryColor);
 }
 
 /* blur */

@@ -153,7 +153,7 @@ const Nav = () => {
             width: 100vw;
             background: var(--bgSecondary);
             opacity: 0.6;
-            backdrop-filter: blur(--blur2);
+            backdrop-filter: var(--blur1);
           }
 
           .nav-content-container {
@@ -166,7 +166,7 @@ const Nav = () => {
             z-index: 999999999999;
             height: 96px;
             width: 100vw;
-            backdrop-filter: blur(--blur2);
+            backdrop-filter: var(--blur1);
           }
 
           nav {

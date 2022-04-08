@@ -44,8 +44,8 @@ const ProgressBar = ({
             border-radius: 3px;
             height: 3px;
             width: ${currVal}%;
-            background-color: #ffbb00;
-            box-shadow: 0px 0px 4px #fac111;
+            background-color: var(--primaryColor);
+            box-shadow: 0px 0px 4px var(--primaryColor);
             transition: all 1s ease-out;
           }
         `}

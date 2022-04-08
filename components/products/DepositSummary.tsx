@@ -12,14 +12,14 @@ const DepositSummary = ({
   return (
     <>
       <div className='pb-container'>
-        <section>
+        <section className='mb-1'>
           <p className='subtitle'>Current Deposits</p>
           <p className='num2'>
             {currDep} {currency}
           </p>
         </section>
         <ProgressBar maxCap={maxCap} currDep={currDep} />
-        <section>
+        <section className='mt-1'>
           <p className='subtitle'>Max Capacity</p>
           <p className='num2'>
             {maxCap / 1000}k {currency}

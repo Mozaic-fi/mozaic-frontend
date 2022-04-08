@@ -7,7 +7,7 @@ const Separator = () => {
           #separator {
             height: 1px;
             width: 100%;
-            background-color: ;
+            background-color: var(--textSecondary);
           }
         `}
       </style>

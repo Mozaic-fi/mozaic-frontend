@@ -31,12 +31,12 @@ const Card = ({
               <div className='corner-img'>
                 <img src='/assets/icons/products/ico.scale.svg' alt='scale' />
               </div>
-              <h3 className='ct-t mt-3'>{name}</h3>
+              <h3 className='title ct-t mt-3'>{name}</h3>
             </div>
           </div>
-          <div className='card-body pb-1'>
+          <div className='card-body'>
             <div className='card-body-container'>
-              <div className='token-ico-container'>
+              <div className='token-ico-container df-c mb-2'>
                 {tokens.map((token) => (
                   <img
                     className='token-ico mr-1'
@@ -46,20 +46,20 @@ const Card = ({
                 ))}
               </div>
               <div className='value-display'>
-                <div className='sshape'></div>
+                <div className='vl-shape mr-2'></div>
                 <section>
                   <p className='subtitle'>Current Projected Yield (APY)</p>
                   <p className='num1'>{currentProjectYield}%</p>
                 </section>
               </div>
-              <div className='value-display'>
-                <div className='sshape'></div>
+              <div className='value-display mb-2'>
+                <div className='vl-shape mr-2'></div>
                 <section>
                   <p className='subtitle'>24h price change</p>
                   <p className='num1'>{priceChange}%</p>
                 </section>
               </div>
-              <div className='spacer'>
+              <div className='mb-2 mr-2 ml-2'>
                 <DepositSummary
                   maxCap={maxCapacity}
                   currDep={currentDeposit}
@@ -67,9 +67,9 @@ const Card = ({
                 />
               </div>
               <Separator />
-              <div className='position-counter'>
-                <p>YOUR POSITION</p>
-                <p>{position ? position : '---'}</p>
+              <div className='position-counter df-sb mt-2 mb-1 mr-2 ml-2'>
+                <p className='t-s fw-l'>YOUR POSITION</p>
+                <p className='fw-b'>{position ? position : '___'}</p>
               </div>
             </div>
           </div>
@@ -82,6 +82,23 @@ const Card = ({
           margin: 0;
           box-sizing: border-box;
           border-radius: 30px;
+          cursor: pointer;
+          transition: transform 0.25s ease, filter 0.25s linear;
+        }
+
+        .product-card-body:hover {
+          transform: scale(1.05);
+          filter: drop-shadow(
+            0px 4px 50px
+              ${name === 'Avalanche Majors'
+                ? '#2EBAC680'
+                : name === 'T-YVUSDC-P-ETH'
+                ? '#2775CA80'
+                : name === 'T-ETH-C'
+                ? '#5A74D680'
+                : 'rgba(255, 166, 0, 0.479)'}
+          );
+          z-index: 9999999;
         }
 
         .card-title-container {
@@ -108,6 +125,37 @@ const Card = ({
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.25s ease;
+        }
+
+        .title {
+          transition: all 0.25s ease;
+        }
+
+        .product-card-body:hover .title-container {
+          background-color: ${name === 'Avalanche Majors'
+            ? '#2EBAC650'
+            : name === 'T-YVUSDC-P-ETH'
+            ? '#2775CA50'
+            : name === 'T-ETH-C'
+            ? '#5A74D650'
+            : 'var(--primaryColor)'};
+        }
+
+        .product-card-body:hover .product-image-container {
+          background-color: ${name === 'Avalanche Majors'
+            ? '#2EBAC6'
+            : name === 'T-YVUSDC-P-ETH'
+            ? '#2775CA'
+            : name === 'T-ETH-C'
+            ? '#5A74D6'
+            : 'var(--primaryColor)'};
+        }
+
+         {
+          /* .product-card-body:hover .title {
+          color: var(--bgPrimary);
+        } */
         }
 
         .product-image-container {
@@ -121,6 +169,7 @@ const Card = ({
           top: -30px;
           left: 30px;
           background-color: var(--bgSecondary);
+          transition: all 0.25s ease;
         }
 
         .corner-img {
@@ -134,6 +183,28 @@ const Card = ({
           right: 30px;
           background-color: var(--bgPrimary);
           border-radius: 0 0 10px 10px;
+        }
+
+        .card-body {
+          margin: 16px;
+        }
+
+        .value-display {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          background-color: var(--bgSecondary);
+          margin-bottom: 10px;
+          padding: 16px;
+          border-radius: 20px;
+        }
+
+        .vl-shape {
+          background-color: var(--primaryColor);
+          width: 5px;
+          height: 20px;
+          border-radius: 3px;
+          margin-top: -15px;
         }
       `}</style>
     </>
