@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Chart from '../../components/chart/Chart';
 import SelectOptions from '../../components/commons/SelectOptions';
 // import Card from '../../components/common/card/Card';
 // import CounterCardContent from '../../components/common/card/CounterCardContent';
@@ -809,10 +810,16 @@ const Product = () => {
 
             <div className='product-info-container'>
               <div className='product-info bg-s'>
-                <img className='product-icon' src={productData.icoSrc} alt='' />
-                <h2 className='product-name fs-xxl tc-s fw-l'>
-                  {productData.prodName}
-                </h2>
+                <div className='product-header'>
+                  <img
+                    className='product-icon'
+                    src={productData.icoSrc}
+                    alt=''
+                  />
+                  <h2 className='product-name fs-xxl tc-s fw-l'>
+                    {productData.prodName}
+                  </h2>
+                </div>
                 <div className='info-container bg-p'>
                   <div>
                     <p className='fw-b fs-s tc-h'>{currentDataStream.name}</p>
@@ -867,7 +874,9 @@ const Product = () => {
 
             {/* chart */}
 
-            <div>
+            <div className='chart-container'>
+              {/* chart filter */}
+
               <div className='filter'>
                 <SelectOptions
                   options={filterByDataType}
@@ -881,6 +890,17 @@ const Product = () => {
                   setSelectedVal={setSelectedRange}
                   type='range'
                 />
+              </div>
+
+              {/* chart */}
+
+              <div className='chart-graph-container'>
+                {selectedOpt && (
+                  <Chart
+                    dataSource={currentDataStream.data}
+                    filter={selectedRange}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -996,108 +1016,120 @@ const Product = () => {
             margin-top: 150px;
             flex-direction: row;
             gap: 30px;
+
+            .product-info-container {
+              width: 270px;
+              display: flex;
+              flex-direction: column;
+            }
+
+            .product-info {
+              border-radius: 10px;
+              display: flex;
+              flex-direction: column;
+              width: 100%px;
+              justify-content: center;
+              align-items: center;
+              padding: 8px;
+              margin: 0;
+              margin-bottom: 24px;
+            }
+
+            .product-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              .product-icon {
+                width: 74px;
+                margin-top: 24px;
+                margin-bottom: 20px;
+              }
+
+              .product-name {
+                text-align: center;
+                line-height: 100%;
+              }
+            }
+
+            .info-container {
+              margin-top: 24px;
+              padding: 16px;
+              box-sizing: border-box;
+              width: 100%;
+              border-radius: 5px;
+            }
+
+            .filter {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: end;
+            }
+
+            .button-container-dw {
+              box-sizing: border-box;
+              padding: 4px;
+              width: 80%;
+              width: 270px;
+              height: max-content;
+              background: linear-gradient(95.03deg, var(--bgPrimary), #2f2d33)
+                  padding-box,
+                linear-gradient(
+                    95.26deg,
+                    var(--primaryColor) 5.57%,
+                    rgba(0, 0, 0, 0) 97.7%
+                  )
+                  border-box;
+              border: 2px solid transparent;
+              border-radius: 53px;
+            }
+
+            button {
+              cursor: pointer;
+              border: none;
+              transition: all 0.5s ease;
+            }
+
+            .btn-left {
+              font-size: 0.96rem;
+              font-weight: bold;
+              position: static;
+              border-radius: 35px 0 0 35px;
+              height: 50px;
+              width: 50%;
+              background-color: var(--primaryColor);
+              color: var(--bgPrimary);
+              &:hover {
+                background-color: var(--primaryColorGlow);
+              }
+            }
+
+            .btn-right {
+              font-size: 0.96rem;
+              font-weight: bold;
+              position: static;
+              border-radius: 0 35px 35px 0;
+              height: 50px;
+              width: 50%;
+              background-color: var(--bgPrimary);
+
+              &:hover {
+                background-color: rgba(47, 45, 51, 0.079);
+              }
+            }
           }
 
-          .product-info-container {
-            width: 270px;
+          .chart-container {
+            width: 100%;
             display: flex;
             flex-direction: column;
-          }
+            align-items: end;
 
-          .product-info {
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            width: 100%px;
-            justify-content: center;
-            align-items: center;
-            padding: 8px;
-            margin: 0;
-            margin-bottom: 24px;
-          }
-
-          .product-icon {
-            width: 74px;
-            margin-top: 24px;
-            margin-bottom: 20px;
-          }
-
-          .product-name {
-            text-align: center;
-            line-height: 100%;
-          }
-
-          .info-container {
-            margin-top: 24px;
-            padding: 16px;
-            box-sizing: border-box;
-            width: 100%;
-            border-radius: 5px;
-          }
-
-          .filter {
-            display: flex;
-            flex-direction: row;
-          }
-
-          .button-container-dw {
-            box-sizing: border-box;
-            padding: 4px;
-            width: 80%;
-            width: 270px;
-            height: max-content;
-            background: linear-gradient(95.03deg, var(--bgPrimary), #2f2d33)
-                padding-box,
-              linear-gradient(
-                  95.26deg,
-                  var(--primaryColor) 5.57%,
-                  rgba(0, 0, 0, 0) 97.7%
-                )
-                border-box;
-            border: 2px solid transparent;
-            border-radius: 53px;
-          }
-
-          button {
-            cursor: pointer;
-            border: none;
-            transition: all 0.5s ease;
-          }
-
-          .btn-left {
-            font-size: 0.96rem;
-            font-weight: bold;
-            position: static;
-            border-radius: 35px 0 0 35px;
-            height: 50px;
-            width: 50%;
-            background-color: var(--primaryColor);
-            color: var(--bgPrimary);
-          }
-
-          .btn-left:hover {
-            background-color: var(--primaryColorGlow);
-          }
-
-          .btn-right {
-            font-size: 0.96rem;
-            font-weight: bold;
-            position: static;
-            border-radius: 0 35px 35px 0;
-            height: 50px;
-            width: 50%;
-            background-color: var(--bgPrimary);
-          }
-
-          .btn-right:hover {
-            background-color: rgba(47, 45, 51, 0.079);
-          }
-
-          .graph-container {
-            width: 100%;
-            height: 400px;
-            background-color: rgba(255, 255, 255, 0.075);
-            margin-bottom: 30px;
+            .chart-graph-container {
+              width: 100%;
+              height: 100%;
+            }
           }
 
           .card-container-p {
@@ -1118,9 +1150,51 @@ const Product = () => {
           }
 
           @media screen and (max-width: 960px) {
+            .chart-container {
+              align-items: center;
+            }
+
             .filter {
               display: flex;
               flex-direction: column;
+            }
+          }
+
+          @media screen and (max-width: 680px) {
+            .header-container {
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              margin-top: 120px;
+
+              .product-info-container {
+                width: 100%;
+              }
+
+              .product-header {
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+                align-items: center;
+                justify-content: center;
+                margin-top: 24px;
+                margin-bottom: 20px;
+                width: min-content;
+
+                .product-icon {
+                  margin-top: 0px;
+                  margin-bottom: 0px;
+                }
+
+                .product-name {
+                  text-align: left;
+                  line-height: 100%;
+                }
+              }
+
+              .button-container-dw {
+                width: 100%;
+              }
             }
           }
         `}

@@ -75,138 +75,134 @@ const Card = ({
           </div>
         </div>
       </Link>
-      <style jsx>{`
-        .product-card-body {
-          position: relative;
-          width: 300px;
-          margin: 0;
-          box-sizing: border-box;
-          border-radius: 30px;
-          cursor: pointer;
-          transition: transform 0.25s ease, filter 0.25s linear;
-        }
+      <style jsx>
+        {`
+          .product-card-body {
+            position: relative;
+            width: 300px;
+            margin: 0;
+            box-sizing: border-box;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.25s ease, filter 0.25s linear;
 
-        .product-card-body:hover {
-          transform: scale(1.05);
-          filter: drop-shadow(
-            0px 4px 50px
-              ${name === 'Avalanche Majors'
-                ? '#2EBAC680'
-                : name === 'T-YVUSDC-P-ETH'
-                ? '#2775CA80'
-                : name === 'T-ETH-C'
-                ? '#5A74D680'
-                : 'rgba(255, 166, 0, 0.479)'}
-          );
-          z-index: 9999999;
-        }
+            &:hover {
+              transform: scale(1.05);
+              filter: drop-shadow(
+                0px 4px 50px
+                  ${name === 'Avalanche Majors'
+                    ? '#2EBAC680'
+                    : name === 'T-YVUSDC-P-ETH'
+                    ? '#2775CA80'
+                    : name === 'T-ETH-C'
+                    ? '#5A74D680'
+                    : 'rgba(255, 166, 0, 0.479)'}
+              );
+              z-index: 9999999;
+            }
+          }
 
-        .card-title-container {
-          width: 100%;
-          height: 115px;
-          background-color: var(--bgSecondary);
-          border-radius: 30px 30px 0 0;
-          background: linear-gradient(261.36deg, #323232, #323232) padding-box,
-            linear-gradient(
-                112.7deg,
-                rgba(190, 180, 207, 0.47) -0.94%,
-                rgba(0, 0, 0, 0) 72.43%
-              )
-              border-box;
-          border: 1px solid transparent;
-        }
+          .card-title-container {
+            width: 100%;
+            height: 115px;
+            background-color: var(--bgSecondary);
+            border-radius: 30px 30px 0 0;
+            background: linear-gradient(261.36deg, #323232, #323232) padding-box,
+              linear-gradient(
+                  112.7deg,
+                  rgba(190, 180, 207, 0.47) -0.94%,
+                  rgba(0, 0, 0, 0) 72.43%
+                )
+                border-box;
+            border: 1px solid transparent;
+          }
 
-        .title-container {
-          width: 100%;
-          height: 100%;
-          background-color: var(--bgSecondary);
-          border-radius: 29px 29px 0 0;
-          padding: 16px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: all 0.25s ease;
-        }
+          .title-container {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bgSecondary);
+            border-radius: 29px 29px 0 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.25s ease;
+          }
 
-        .title {
-          transition: all 0.25s ease;
-        }
+          .title {
+            transition: all 0.25s ease;
+          }
 
-        .product-card-body:hover .title-container {
-          background-color: ${name === 'Avalanche Majors'
-            ? '#2EBAC650'
-            : name === 'T-YVUSDC-P-ETH'
-            ? '#2775CA50'
-            : name === 'T-ETH-C'
-            ? '#5A74D650'
-            : 'var(--primaryColor)'};
-        }
+          .product-card-body:hover .title-container {
+            background-color: ${name === 'Avalanche Majors'
+              ? '#2EBAC650'
+              : name === 'T-YVUSDC-P-ETH'
+              ? '#2775CA50'
+              : name === 'T-ETH-C'
+              ? '#5A74D650'
+              : 'var(--primaryColor)'};
+          }
 
-        .product-card-body:hover .product-image-container {
-          background-color: ${name === 'Avalanche Majors'
-            ? '#2EBAC6'
-            : name === 'T-YVUSDC-P-ETH'
-            ? '#2775CA'
-            : name === 'T-ETH-C'
-            ? '#5A74D6'
-            : 'var(--primaryColor)'};
-        }
+          .product-card-body:hover .product-image-container {
+            background-color: ${name === 'Avalanche Majors'
+              ? '#2EBAC6'
+              : name === 'T-YVUSDC-P-ETH'
+              ? '#2775CA'
+              : name === 'T-ETH-C'
+              ? '#5A74D6'
+              : 'var(--primaryColor)'};
+          }
 
-         {
-          /* .product-card-body:hover .title {
-          color: var(--bgPrimary);
-        } */
-        }
+          .product-image-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: -30px;
+            left: 30px;
+            background-color: var(--bgSecondary);
+            transition: all 0.25s ease;
+          }
 
-        .product-image-container {
-          width: 80px;
-          height: 80px;
-          border-radius: 40px;
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          top: -30px;
-          left: 30px;
-          background-color: var(--bgSecondary);
-          transition: all 0.25s ease;
-        }
+          .corner-img {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            top: 0;
+            right: 30px;
+            background-color: var(--bgPrimary);
+            border-radius: 0 0 10px 10px;
+          }
 
-        .corner-img {
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 44px;
-          height: 44px;
-          top: 0;
-          right: 30px;
-          background-color: var(--bgPrimary);
-          border-radius: 0 0 10px 10px;
-        }
+          .card-body {
+            margin: 16px;
+          }
 
-        .card-body {
-          margin: 16px;
-        }
+          .value-display {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: var(--bgSecondary);
+            margin-bottom: 10px;
+            padding: 16px;
+            border-radius: 20px;
+          }
 
-        .value-display {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          background-color: var(--bgSecondary);
-          margin-bottom: 10px;
-          padding: 16px;
-          border-radius: 20px;
-        }
-
-        .vl-shape {
-          background-color: var(--primaryColor);
-          width: 5px;
-          height: 20px;
-          border-radius: 3px;
-          margin-top: -15px;
-        }
-      `}</style>
+          .vl-shape {
+            background-color: var(--primaryColor);
+            width: 5px;
+            height: 20px;
+            border-radius: 3px;
+            margin-top: -15px;
+          }
+        `}
+      </style>
     </>
   );
 };

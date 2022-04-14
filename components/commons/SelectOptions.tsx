@@ -41,8 +41,9 @@ const SelectOptions = ({
       {type === 'range' && (
         <div className='select-container range'>
           {options.map((option: { id: any; value: string; name: string }) => (
-            <div key={option.id}>
+            <>
               <button
+                key={option.id}
                 onClick={
                   !handleClick
                     ? selectOptHandler
@@ -56,26 +57,29 @@ const SelectOptions = ({
                 {option.name}
               </button>
               <div className='separator'></div>
-            </div>
+            </>
           ))}
         </div>
       )}
-      <style jsx lang='scss'></style>
+      <style jsx>
         {`
           button {
             height: 35px;
             cursor: pointer;
           }
-
           .select-container {
             display: flex;
             flex-direction: row;
-            background: linear-gradient(95.03deg, #35363e 0%, #35363e 100.65%)
+            background: linear-gradient(
+                  95.03deg,
+                  var(--bgSecondary),
+                  var(--bgSecondary) 100.65%
+                )
                 padding-box,
               linear-gradient(
                   135deg,
-                  rgba(255, 255, 255, 0.34) 0%,
-                  rgba(0, 0, 0, 0.17) 100%
+                  var(--textSecondary50) 0%,
+                  var(--bgPrimary) 100%
                 )
                 border-box;
             border: 1px solid transparent;
@@ -104,18 +108,18 @@ const SelectOptions = ({
               margin: 0px 2px;
 
               &:hover {
-                background: rgba(255, 255, 255, 0.137);
+                background: #ffffff30;
               }
             }
 
             .active {
-              background-color: rgba(37, 33, 43, 0.6);
+              background-color: var(--bgPrimary);
             }
 
             .separator {
               width: 1px;
               height: 30px;
-              background-color: #9d9d98cc;
+              background-color: var(--textSecondary50);
               margin: auto 2px;
 
               &:last-child {
@@ -126,7 +130,6 @@ const SelectOptions = ({
 
           .range {
             justify-content: space-evenly;
-            max-width: 80%;
             min-width: min-content;
             box-sizing: border-box;
             padding-left: 4px !important;
@@ -135,6 +138,7 @@ const SelectOptions = ({
 
           @media screen and (max-width: 764px) {
             .select-container {
+              width: 100%;
               margin-left: 0;
             }
           }
