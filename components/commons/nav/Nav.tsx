@@ -184,6 +184,10 @@ const Nav = () => {
             transition: font-weight 0.25s ease;
           }
 
+          nav a:last-child {
+            margin-right: 0;
+          }
+
           nav a:hover {
             font-weight: bold;
           }

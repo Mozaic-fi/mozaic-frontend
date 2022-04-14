@@ -1,6 +1,19 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+type NavItem = {
+  id: any;
+  name: string;
+  path: string;
+};
+
+type MenuItem = {
+  id: any;
+  name: string;
+  path: string;
+  icoSrc: string;
+};
+
 const MobileNav = () => {
   const router = useRouter();
   const isActive = (path: string) => {
@@ -8,7 +21,7 @@ const MobileNav = () => {
     return '';
   };
 
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       id: 1,
       name: 'Products',
@@ -31,36 +44,36 @@ const MobileNav = () => {
     },
   ];
 
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     {
       id: 1,
       name: 'Mozaic',
       path: '/home',
-      imgSrc: '/assets/icons/nav/navMenu/ico.menu.home.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.home.svg',
     },
     {
       id: 2,
       name: 'General Feedback',
       path: '/feedback',
-      imgSrc: '/assets/icons/nav/navMenu/ico.menu.feedback.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.feedback.svg',
     },
     {
       id: 3,
       name: 'Bug Report',
       path: '/report',
-      imgSrc: '/assets/icons/nav/navMenu/ico.menu.bug.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.bug.svg',
     },
     {
       id: 4,
       name: 'User',
       path: '/user',
-      imgSrc: '/assets/icons/nav/navMenu/ico.menu.user.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.user.svg',
     },
     {
       id: 5,
       name: 'Governance',
       path: '/governance',
-      imgSrc: '/assets/icons/nav/navMenu/ico.menu.governance.svg',
+      icoSrc: '/assets/icons/nav/navMenu/ico.menu.governance.svg',
     },
   ];
 
@@ -86,7 +99,7 @@ const MobileNav = () => {
             <Link key={item.id} href={item.path}>
               <div className='menu-items bg-s'>
                 <div className='iconholder-menu'>
-                  <img src={item.imgSrc} alt='' />
+                  <img src={item.icoSrc} alt='' />
                 </div>
                 <p>{item.name}</p>
               </div>
@@ -124,6 +137,10 @@ const MobileNav = () => {
             margin: 0;
             padding: 1.25rem;
             width: 80%;
+          }
+
+          nav:last-child {
+            margin-right: 0;
           }
 
           nav a:hover {

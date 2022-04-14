@@ -42,7 +42,7 @@ const Modal = ({
             />
             <div>
               {titleImgSrc && <img src={titleImgSrc} alt='' />}
-              <h3 className='ff-1 fs-xl'>{title}</h3>
+              <h3 className='fs-l fw-r tc-s'>{title}</h3>
             </div>
           </div>
           <div className='modal-body'>{children}</div>

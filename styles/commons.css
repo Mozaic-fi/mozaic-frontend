@@ -2,8 +2,13 @@
 :root {
   --primaryColor: #f3deb7;
   --textSecondary: #9d9d98;
+  --primaryColorGlow: #ffd992;
+  --alert: #ff532e;
+  --positive: #83bd67;
+  --highlight: #ff9900;
   --bgPrimary: #232323;
   --bgSecondary: #323232;
+  --light: #d4d4d4;
   --blur1: blur(14px);
   --blur2: blur(64px);
   --glowPrimary: #f3deb750;
@@ -15,16 +20,28 @@
   color: #ffffff;
 }
 
-.t-p {
+.tc-p {
   color: #ffffff;
 }
 
-.t-s {
+.tc-s {
   color: var(--textSecondary);
 }
 
-.t-h {
+.tc-h {
   color: var(--primaryColor);
+}
+
+.tc-hd {
+  color: var(--highlight);
+}
+
+.tc-alert {
+  color: var(--alert);
+}
+
+.tc-positive {
+  color: var(--positive);
 }
 
 .fw-b {
@@ -33,6 +50,10 @@
 
 .fw-l {
   font-weight: 200;
+}
+
+.fw-r {
+  font-weight: 400;
 }
 
 .fw-eb {
@@ -50,7 +71,8 @@
 /* text */
 
 .pt-t {
-  margin-top: 120px;
+  margin-top: 24px;
+  margin-left: 36px;
   font-size: 3.75rem;
   font-weight: 200;
   color: var(--textSecondary);
@@ -136,3 +158,37 @@
 }
 
 /* shadow */
+
+/* font size */
+
+.fs-xxxl {
+  font-size: 3rem;
+}
+
+.fs-xxl {
+  font-size: 2rem;
+}
+
+.fs-xl {
+  font-size: 1.5rem;
+}
+
+.fs-l {
+  font-size: 1.125rem;
+}
+
+.fs-m {
+  font-size: 1rem;
+}
+
+.fs-s {
+  font-size: 0.875rem;
+}
+
+.fs-xs {
+  font-size: 0.75rem;
+}
+
+.fs-xxs {
+  font-size: 0.625rem;
+}

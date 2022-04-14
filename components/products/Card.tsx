@@ -68,7 +68,7 @@ const Card = ({
               </div>
               <Separator />
               <div className='position-counter df-sb mt-2 mb-1 mr-2 ml-2'>
-                <p className='t-s fw-l'>YOUR POSITION</p>
+                <p className='tc-s fw-l'>YOUR POSITION</p>
                 <p className='fw-b'>{position ? position : '___'}</p>
               </div>
             </div>

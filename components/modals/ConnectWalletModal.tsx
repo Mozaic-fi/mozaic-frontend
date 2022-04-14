@@ -21,11 +21,11 @@ const ConnectWalletModal = ({ setIsOpen }: any) => {
         <>
           <div onClick={() => handleConnectWallet(0)} className='walletbtn'>
             <img src='/assets/icons/wallets/ico.walletconnect.svg' alt='' />
-            <p>WALLET CONNECT</p>
+            <p className='tc-s'>WALLET CONNECT</p>
           </div>
           <div onClick={() => handleConnectWallet(1)} className='walletbtn'>
             <img src='/assets/icons/wallets/ico.metamask.svg' alt='' />
-            <p>META MASK</p>
+            <p className='tc-s'>META MASK</p>
           </div>
         </>
       </Modal>
