@@ -28,6 +28,7 @@ const Layout = ({ children }: Props) => {
 
           .page-content {
             margin-top: 96px;
+            padding-bottom: 64px;
           }
         `}
       </style>
