@@ -49,13 +49,13 @@ const Table = ({ titles, items }: any) => {
             <tr key={item.id}>
               <td>
                 <div className='table-body token-name'>
-                  <img src={item.icoSrc} alt='' />
+                  <img className='mr-2' src={item.icoSrc} alt='' />
                   <p>{item.name}</p>
                 </div>
               </td>
               <td>
                 <div className='table-body'>
-                  <p>{item.allocation}%</p>
+                  <p className='mr-2'>{item.allocation}%</p>
                   {width > 620 && (
                     <ProgressBar
                       maxCap={maxAllocation}
@@ -83,16 +83,11 @@ const Table = ({ titles, items }: any) => {
           ))}
         </tbody>
       </table>
-      <Separator />
       <style jsx>
         {`
           table {
             width: 100%;
             border-collapse: collapse;
-          }
-
-          .table-body {
-            border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
           }
 
           .table-body .token-name {
@@ -103,6 +98,9 @@ const Table = ({ titles, items }: any) => {
           td,
           th {
             text-align: left;
+          }
+          tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           }
 
           .table-header {

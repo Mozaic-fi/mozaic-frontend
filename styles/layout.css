@@ -275,6 +275,12 @@
   align-items: center;
 }
 
+.df-r {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .df {
   display: flex;
 }

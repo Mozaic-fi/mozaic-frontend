@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Product } from '../../pages';
+import { Product } from '../../data/HomeData';
 import Separator from '../commons/Separator';
 import DepositSummary from './DepositSummary';
 
