@@ -3,11 +3,8 @@ import Chart from '../../components/chart/Chart';
 import Card from '../../components/commons/card/Card';
 import CounterCardContent from '../../components/commons/card/CounterCardContent';
 import SelectOptions from '../../components/commons/SelectOptions';
-// import Table from '../../components/common/table/Table';
-// import CompactTable from '../../components/common/table/CompactTable';
-// import Chart from '../../components/common/chart/Chart';
-// import WithdrawModal from '../../components/common/modals/WithdrawModal';
-// import DepositModal from '../../components/common/modals/DepositModal';
+import CompactTable from '../../components/table/CompactTable';
+import Table from '../../components/table/Table';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 interface dataType {
@@ -93,7 +90,7 @@ const Product = () => {
 
   const productData = {
     id: 1,
-    prodName: 'Avalanche Majors',
+    name: 'Avalanche Majors',
     tokenName: 'AVAM',
     icoSrc: '/assets/icons/products/ico.avalanchemajor.svg',
     summary: {
@@ -769,6 +766,21 @@ const Product = () => {
     ],
   };
 
+  const bottomCardContent: { id: any; title: string; description: string }[] = [
+    {
+      id: 1,
+      title: 'Fee Structure',
+      description:
+        'The vault fee consists of a 2% annualised management fee and a 20% performance fee. The performance fee is charged based on the assets managed by the vault. If the strategy is profitable, the performance fee is charged on the premiums when withdrawing; however, if the strategy is unprofitable, there are no fees charged. There is no withdraw fee.',
+    },
+    {
+      id: 2,
+      title: 'Vault Strategy',
+      description:
+        'The vault gives users exposure to a specific category of tokens. Every hour the vault rebalanced the portfolio according to our modelling system and then rotates the tokens to the highest rewarding protocol to farm with.',
+    },
+  ];
+
   const { height, width } = useWindowDimensions();
   const calculatedCardWidth =
     width < 670 ? '100%' : width < 910 ? '45%' : width < 1110 ? '30%' : '260px';
@@ -817,7 +829,7 @@ const Product = () => {
                     alt=''
                   />
                   <h2 className='product-name fs-xxl tc-s fw-l'>
-                    {productData.prodName}
+                    {productData.name}
                   </h2>
                 </div>
                 <div className='info-container bg-p'>
@@ -935,52 +947,30 @@ const Product = () => {
                 />
               </Card>
             </div>
-            <div className='space'></div>
-            {/* <div className='table'>
+            <div className='table'>
               {width > 670 ? (
                 <Table titles={investmentTitles} items={productData.tokens} />
               ) : (
                 <CompactTable items={productData.tokens} />
               )}
-            </div> */}
+            </div>
             <div className='space'></div>
             <div className='card-container-p'>
-              <Card
-                w={width > 850 ? '%' : '100%'}
-                type='secondary'
-                h='auto'
-                d='block'
-                p='30px'
-              >
-                <>
-                  <h2 className='ff-1 tc-p'>Fee Structure</h2>
-                  <p className='tc-s fs-s'>
-                    The vault fee consists of a 2% annualised management fee and
-                    a 20% performance fee. The performance fee is charged based
-                    on the assets managed by the vault. If the strategy is
-                    profitable, the performance fee is charged on the premiums
-                    when withdrawing; however, if the strategy is unprofitable,
-                    there are no fees charged. There is no withdraw fee.
-                  </p>
-                </>
-              </Card>
-              <Card
-                w={width > 850 ? '48%' : '100%'}
-                type='secondary'
-                h='auto'
-                d='block'
-                p='30px'
-              >
-                <>
-                  <h2 className='ff-1 tc-p'>vault strategy</h2>
-                  <p className='tc-s fs-s'>
-                    The vault gives users exposure to a specific category of
-                    tokens. Every hour the vault rebalances the portfolio
-                    according to our modelling system and then rotates the
-                    tokens to the highest rewarding protocol to farm with.
-                  </p>
-                </>
-              </Card>
+              {bottomCardContent.map((content) => (
+                <Card
+                  key={content.id}
+                  w={width > 850 ? '%' : '100%'}
+                  type='secondary'
+                  h='auto'
+                  d='block'
+                  p='30px'
+                >
+                  <>
+                    <h2 className='ff-1 tc-p'>{content.title}</h2>
+                    <p className='tc-s fs-s'>{content.description}</p>
+                  </>
+                </Card>
+              ))}
             </div>
             <div className='space'></div>
           </div>
@@ -1113,6 +1103,7 @@ const Product = () => {
           .card-container-p {
             flex-basis: 100%;
             margin-top: 30px;
+            margin-bottom: 30px;
             display: flex;
             gap: 30px;
             justify-content: space-between;
