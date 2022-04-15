@@ -16,3 +16,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* chart */
+
+.apexcharts-tooltip-text-y-label {
+  color: var(--textSecondary);
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active {
+  background-color: var(--bgPrimary) !important;
+}
+
+.apexcharts-xaxistooltip.apexcharts-xaxistooltip-bottom.apexcharts-theme-false.apexcharts-active {
+  display: none;
+}

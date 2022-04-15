@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import SelectOptions from '../commons/SelectOptions';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
@@ -34,6 +33,7 @@ const Chart = ({ filter, dataSource }: { filter: any; dataSource: any }) => {
         },
       },
       annotations: {},
+
       colors: ['#f3deb7', '#f3deb7', '#f3deb7'],
 
       markers: {
@@ -43,8 +43,12 @@ const Chart = ({ filter, dataSource }: { filter: any; dataSource: any }) => {
       xaxis: {
         show: false,
         type: 'datetime',
-        // min: new Date('01 Mar 2012').getTime(),
         tickAmount: 6,
+        labels: {
+          style: {
+            colors: '#f3deb750',
+          },
+        },
       },
 
       yaxis: {
@@ -52,11 +56,14 @@ const Chart = ({ filter, dataSource }: { filter: any; dataSource: any }) => {
       },
 
       tooltip: {
+        enabled: true,
+        fillSeriesColor: true,
         theme: false,
-        fill: {
-          shade: 'light',
+        style: {
+          fontSize: '12px',
+          fontFamily: undefined,
+          colors: ['#000', '#000'],
         },
-        colors: ['#f3deb7', '#f3deb7'],
         x: {
           format: 'dd MMM yyyy',
         },
@@ -83,7 +90,7 @@ const Chart = ({ filter, dataSource }: { filter: any; dataSource: any }) => {
       return dt.setDate(dt.getDate() - distance);
     };
 
-    let data = [];
+    let data: [] = [];
     let ref = dataSource[dataSource.length - 1][0];
 
     if (filter === '1y') {

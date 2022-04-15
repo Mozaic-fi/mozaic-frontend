@@ -15,68 +15,58 @@ const Card = ({
 }) => {
   return (
     <>
-      <div className={'card-' + type + '-p'}>{children}</div>
+      <div className={'card-' + type + '-p card-bg'}>
+        {type === 'primary' && (
+          <img className='shine' src='/assets/images/shine.svg' alt='' />
+        )}
+        {children}
+      </div>
 
       <style jsx>
         {`
-          .card-primary-p {
-            box-sizing: border-box;
-            height: min-content;
+          .card-bg {
+            position: relative;
             display: ${d};
-            justify-content: start;
-            align-items: center;
-            background: linear-gradient(95.03deg, #2a2b34 0%, #2a2b34 100.65%)
-                padding-box,
-              linear-gradient(332.19deg, #f8e099 0.94%, rgba(0, 0, 0, 0) 80.79%)
-                border-box;
-            border: 1px solid transparent;
-            border-radius: 10px;
-            width: ${w};
-            max-width: 100%;
-            height: ${h};
-            padding: ${p};
-            margin: 8px;
+            flex: 1;
+            background-color: #ffffff20;
+            backdrop-filter: var(--blur1);
+            transition: all 0.25s ease;
+            object-fit: contain;
+            &:hover {
+              background-color: #ffffff30;
+            }
           }
 
-          .card-primary-p:hover {
-            background: linear-gradient(95.03deg, #2e2f38 0%, #32333d 100.65%)
-                padding-box,
-              linear-gradient(332.19deg, #f8e099 0.94%, rgba(0, 0, 0, 0) 80.79%)
-                border-box;
+          .shine {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            height: 100%;
+            opacity: 0.1;
+          }
+
+          .card-primary-p {
+            height: min-content;
+            justify-content: start;
+            align-items: center;
+            border-radius: 10px;
+            max-width: 100%;
+            min-width: 270px;
+            height: ${h};
+            padding: ${p};
           }
 
           .card-secondary-p {
-            box-sizing: border-box;
             height: min-content;
             display: ${d};
             justify-content: start;
             align-items: center;
-            background: linear-gradient(95.03deg, #25212b 0%, #25212b 100.65%)
-                padding-box,
-              linear-gradient(
-                  135deg,
-                  rgba(255, 255, 255, 0.34) 0%,
-                  rgba(0, 0, 0, 0.17) 100%
-                )
-                border-box;
-            border: 1px solid transparent;
             border-radius: 10px;
             width: ${w};
+            min-width: 450px;
             max-width: 100%;
             height: ${h};
             padding: ${p};
-            margin: 8px;
-          }
-
-          .card-secondary-p:hover {
-            background: linear-gradient(95.03deg, #2e2935 0%, #2a2631 100.65%)
-                padding-box,
-              linear-gradient(
-                  135deg,
-                  rgba(255, 255, 255, 0.34) 0%,
-                  rgba(0, 0, 0, 0.17) 100%
-                )
-                border-box;
           }
         `}
       </style>

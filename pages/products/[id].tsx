@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Chart from '../../components/chart/Chart';
+import Card from '../../components/commons/card/Card';
+import CounterCardContent from '../../components/commons/card/CounterCardContent';
 import SelectOptions from '../../components/commons/SelectOptions';
-// import Card from '../../components/common/card/Card';
-// import CounterCardContent from '../../components/common/card/CounterCardContent';
 // import Table from '../../components/common/table/Table';
 // import CompactTable from '../../components/common/table/CompactTable';
 // import Chart from '../../components/common/chart/Chart';
@@ -904,46 +904,13 @@ const Product = () => {
               </div>
             </div>
           </div>
-          {/* <div className=' container'>
-            <div className='summary'>
-
-              </div>
-              <div className='filter'>
-                <SelectOptions
-                  options={filterByDataType}
-                  selectedVal={selectedOpt}
-                  setSelectedVal={setSelectedOpt}
-                  type='dropdown'
-                />
-                <SelectOptions
-                  options={filterByTime}
-                  selectedVal={selectedRange}
-                  setSelectedVal={setSelectedRange}
-                  type='range'
-                />
-              </div>
-            </div>
-            <div className='chart-container'>
-              {selectedOpt && (
-                <Chart
-                  dataSource={currentDataStream.data}
-                  filter={selectedRange}
-                />
-              )}
-            </div>
+          <div className=' container'>
             <div className='card-container-p'>
               <Card w={calculatedCardWidth}>
                 <CounterCardContent
-                  icoSrc='/assets/icons/productindepth/ico.managedassets.svg'
-                  title='Assets under management'
-                  counter={`$${productData.summary.assetsUnderManagement}`}
-                />
-              </Card>
-              <Card w={calculatedCardWidth}>
-                <CounterCardContent
-                  icoSrc='/assets/icons/productindepth/ico.avaragemonthlyreturn.svg'
-                  title='Avarage monthly return'
-                  counter={`${productData.summary.averageMonthlyReturn}%`}
+                  icoSrc='/assets/icons/productindepth/ico.predictedapy.svg'
+                  title='PREDICTED APY'
+                  counter={productData.summary.predictedApy}
                 />
               </Card>
               <Card w={calculatedCardWidth}>
@@ -955,38 +922,47 @@ const Product = () => {
               </Card>
               <Card w={calculatedCardWidth}>
                 <CounterCardContent
-                  icoSrc='/assets/icons/productindepth/ico.predictedapy.svg'
-                  title='PREDICTED APY'
-                  counter={productData.summary.predictedApy}
+                  icoSrc='/assets/icons/productindepth/ico.avaragemonthlyreturn.svg'
+                  title='Avarage monthly return'
+                  counter={`${productData.summary.averageMonthlyReturn}%`}
+                />
+              </Card>
+              <Card w={calculatedCardWidth}>
+                <CounterCardContent
+                  icoSrc='/assets/icons/productindepth/ico.managedassets.svg'
+                  title='Assets under management'
+                  counter={`$${productData.summary.assetsUnderManagement}`}
                 />
               </Card>
             </div>
             <div className='space'></div>
-            <div className='table'>
+            {/* <div className='table'>
               {width > 670 ? (
                 <Table titles={investmentTitles} items={productData.tokens} />
               ) : (
                 <CompactTable items={productData.tokens} />
               )}
-            </div>
+            </div> */}
             <div className='space'></div>
             <div className='card-container-p'>
               <Card
-                w={width > 850 ? '48%' : '100%'}
+                w={width > 850 ? '%' : '100%'}
                 type='secondary'
                 h='auto'
                 d='block'
                 p='30px'
               >
-                <h2 className='ff-1 tc-p'>Fee Structure</h2>
-                <p className='tc-s fs-s'>
-                  The vault fee consists of a 2% annualised management fee and a
-                  20% performance fee. The performance fee is charged based on
-                  the assets managed by the vault. If the strategy is
-                  profitable, the performance fee is charged on the premiums
-                  when withdrawing; however, if the strategy is unprofitable,
-                  there are no fees charged. There is no withdraw fee.
-                </p>
+                <>
+                  <h2 className='ff-1 tc-p'>Fee Structure</h2>
+                  <p className='tc-s fs-s'>
+                    The vault fee consists of a 2% annualised management fee and
+                    a 20% performance fee. The performance fee is charged based
+                    on the assets managed by the vault. If the strategy is
+                    profitable, the performance fee is charged on the premiums
+                    when withdrawing; however, if the strategy is unprofitable,
+                    there are no fees charged. There is no withdraw fee.
+                  </p>
+                </>
               </Card>
               <Card
                 w={width > 850 ? '48%' : '100%'}
@@ -995,17 +971,19 @@ const Product = () => {
                 d='block'
                 p='30px'
               >
-                <h2 className='ff-1 tc-p'>vault strategy</h2>
-                <p className='tc-s fs-s'>
-                  The vault gives users exposure to a specific category of
-                  tokens. Every hour the vault rebalances the portfolio
-                  according to our modelling system and then rotates the tokens
-                  to the highest rewarding protocol to farm with.
-                </p>
+                <>
+                  <h2 className='ff-1 tc-p'>vault strategy</h2>
+                  <p className='tc-s fs-s'>
+                    The vault gives users exposure to a specific category of
+                    tokens. Every hour the vault rebalances the portfolio
+                    according to our modelling system and then rotates the
+                    tokens to the highest rewarding protocol to farm with.
+                  </p>
+                </>
               </Card>
             </div>
             <div className='space'></div>
-          </div> */}
+          </div>
         </>
       )}
 
@@ -1081,7 +1059,7 @@ const Product = () => {
                     rgba(0, 0, 0, 0) 97.7%
                   )
                   border-box;
-              border: 2px solid transparent;
+              border: 1px solid transparent;
               border-radius: 53px;
             }
 
@@ -1133,10 +1111,14 @@ const Product = () => {
           }
 
           .card-container-p {
+            flex-basis: 100%;
+            margin-top: 30px;
             display: flex;
+            gap: 30px;
             justify-content: space-between;
             width: 100%;
-            flex-wrap: wrap;
+            flex-direction: row-reverse;
+            flex-wrap: wrap-reverse;
           }
 
           .table {
