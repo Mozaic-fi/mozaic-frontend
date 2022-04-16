@@ -63,7 +63,6 @@ const Card = ({
             align-items: center;
             border-radius: 10px;
             width: ${w};
-            min-width: 450px;
             max-width: 100%;
             height: ${h};
             padding: ${p};

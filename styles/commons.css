@@ -10,6 +10,7 @@
   --bgPrimary: #232323;
   --bgSecondary: #323232;
   --bgSecondaryHover: #444444;
+  --bgTextInput: #ffffff10;
   --light: #d4d4d4;
   --blur1: blur(14px);
   --blur2: blur(64px);
@@ -133,6 +134,7 @@
   backdrop-filter: blur(40px);
   z-index: 99999999;
   animation: fade-overlay 0.5s;
+  transition: all;
 }
 
 .bg-p {
@@ -160,6 +162,12 @@
 }
 
 /* shadow */
+
+/* shape */
+
+.rounded {
+  border-radius: 50px;
+}
 
 /* font size */
 
@@ -193,4 +201,25 @@
 
 .fs-xxs {
   font-size: 0.625rem;
+}
+
+/* button */
+
+.btn-primary {
+  padding: 15px 30px;
+  margin-right: 20px;
+  color: var(--primaryColor);
+  font-size: 14px;
+  font-weight: bold;
+  background-color: transparent;
+  border: 1px solid var(--primaryColor);
+  border-radius: 55px;
+  transition: transform 2s;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: var(--primaryColor);
+  color: var(--bgPrimary);
 }

@@ -3,6 +3,7 @@ import Chart from '../../components/chart/Chart';
 import Card from '../../components/commons/card/Card';
 import CounterCardContent from '../../components/commons/card/CounterCardContent';
 import SelectOptions from '../../components/commons/SelectOptions';
+import WithdrawModal from '../../components/modals/WithdrawModal';
 import CompactTable from '../../components/table/CompactTable';
 import MatrixTable from '../../components/table/MatrixTable';
 import Table from '../../components/table/Table';
@@ -130,13 +131,13 @@ const Product = () => {
                 <button onClick={() => handleWD(1)} className='btn-right'>
                   Withdraw
                 </button>
-                {/* {isOpenWM && (
+                {isOpenWM && (
                   <WithdrawModal
-                  closeModal={setIsOpenWM}
-                  availableToken={productData.tokens}
-                  tokenName={productData.tokenName}
+                    closeModal={setIsOpenWM}
+                    availableToken={productData.tokens}
+                    tokenName={productData.tokenName}
                   />
-                )} */}
+                )}
               </div>
             </div>
 
@@ -252,7 +253,6 @@ const Product = () => {
               {bottomCardContent.map((content) => (
                 <Card
                   key={content.id}
-                  w={width > 850 ? '%' : '100%'}
                   type='secondary'
                   h='auto'
                   d='block'
@@ -476,6 +476,9 @@ const Product = () => {
               .button-container-dw {
                 width: 100%;
               }
+            }
+            .card-container-p {
+              flex-direction: column;
             }
           }
         `}

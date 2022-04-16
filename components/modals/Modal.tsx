@@ -20,7 +20,7 @@ const Modal = ({
     setOpen(false);
     setTimeout(() => {
       closeModal(false);
-    }, 500);
+    }, 250);
   };
 
   return (
@@ -62,22 +62,6 @@ const Modal = ({
             border-radius: 15px;
           }
 
-          .modal-container.open {
-            animation: slide 0.5s ease 0s 1 forwards;
-          }
-
-          .modal-container.close {
-            animation: slide-rev 0.5s ease 0s 1 backwards;
-          }
-
-          .overlay.open {
-            animation: fade-overlay 0.5s ease 0s 1 forwards;
-          }
-
-          .overlay.close {
-            animation: fade-overlay-rev 0.5s ease 0s 1 backwards;
-          }
-
           .modal-header {
             margin-top: 12;
             margin-bottom: 36px;
@@ -104,6 +88,30 @@ const Modal = ({
           .btn-close:hover {
             filter: invert(88%) sepia(27%) saturate(401%) hue-rotate(345deg)
               brightness(800%) contrast(91%);
+          }
+        `}
+      </style>
+
+      <style jsx global>
+        {`
+          .modal-container {
+            &.open {
+              animation: slide 0.25s ease 0s 1 forwards;
+            }
+
+            &.close {
+              animation: slide-rev 0.25s ease 0s 1 backwards;
+            }
+          }
+
+          .overlay {
+            &.open {
+              animation: fade-overlay 0.25s ease 0s 1 forwards;
+            }
+
+            &.close {
+              animation: fade-overlay-rev 0.25s ease 0s 1 backwards;
+            }
           }
         `}
       </style>
