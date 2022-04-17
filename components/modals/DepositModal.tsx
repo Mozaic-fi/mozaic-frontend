@@ -7,7 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 import SingleAssetDepositForm from '../../forms/productindepth/SingleAssetDepositForm';
 import MultiAssetDepositForm from '../../forms/productindepth/MultiAssetDepositForm';
 
-const DepositModal = ({ closeModal, availableToken, tokenName }) => {
+const DepositModal = ({ closeModal, availableToken, tokenName }: any) => {
   const { walletConnected } = useAuth();
   const { width, height } = useWindowDimensions();
 

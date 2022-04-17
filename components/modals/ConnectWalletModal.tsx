@@ -1,18 +1,59 @@
+import { useWeb3React } from '@web3-react/core';
+import {
+  injected,
+  walletconnect,
+  resetWalletConnector,
+} from '../../helpers/connectors';
 import useAuth from '../../hooks/useAuth';
 import Modal from './Modal';
 
 const ConnectWalletModal = ({ setIsOpen }: any) => {
   const { walletConnected, addWallet, removeWallet } = useAuth();
+  const web3reactContext = useWeb3React();
+
+  //web3react context
+  const checkInfo = async () => {
+    try {
+      console.log('web3reactContext');
+      console.log(web3reactContext);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //web3react metamask
+  const connectMetamask = async () => {
+    try {
+      await web3reactContext.activate(injected).then(() => {
+        setIsOpen(false);
+        addWallet();
+      });
+      checkInfo();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //web3react walletconnect
+  const connectWalletConnect = async () => {
+    try {
+      resetWalletConnector(walletconnect);
+      await web3reactContext.activate(walletconnect).then(() => {
+        addWallet();
+        setIsOpen(false);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleConnectWallet = (wallet: number): void => {
     if (wallet === 0) {
-      console.log('walletconnect clicked');
+      connectMetamask();
     }
     if (wallet === 1) {
-      console.log('metamask clicked');
+      connectWalletConnect();
     }
-    addWallet();
-    setIsOpen(false);
   };
 
   return (
@@ -20,12 +61,12 @@ const ConnectWalletModal = ({ setIsOpen }: any) => {
       <Modal title='Connect Wallet' closeModal={setIsOpen}>
         <>
           <div onClick={() => handleConnectWallet(0)} className='walletbtn'>
-            <img src='/assets/icons/wallets/ico.walletconnect.svg' alt='' />
-            <p className='tc-s'>WALLET CONNECT</p>
-          </div>
-          <div onClick={() => handleConnectWallet(1)} className='walletbtn'>
             <img src='/assets/icons/wallets/ico.metamask.svg' alt='' />
             <p className='tc-s'>META MASK</p>
+          </div>
+          <div onClick={() => handleConnectWallet(1)} className='walletbtn'>
+            <img src='/assets/icons/wallets/ico.walletconnect.svg' alt='' />
+            <p className='tc-s'>WALLET CONNECT</p>
           </div>
         </>
       </Modal>

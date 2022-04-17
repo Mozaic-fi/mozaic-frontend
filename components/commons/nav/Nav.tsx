@@ -1,3 +1,10 @@
+import { useWeb3React } from '@web3-react/core';
+import {
+  injected,
+  walletconnect,
+  resetWalletConnector,
+} from '../../../helpers/connectors';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -8,6 +15,18 @@ import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import ConnectWalletModal from '../../modals/ConnectWalletModal';
 
 const Nav = () => {
+  const web3reactContext = useWeb3React();
+
+  // disconnect metamask
+
+  const disconnectMetamask = () => {
+    try {
+      web3reactContext.deactivate();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const { walletConnected, removeWallet } = useAuth();
   const { height, width } = useWindowDimensions();
 
@@ -20,6 +39,11 @@ const Nav = () => {
 
   const handleWalletModal = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleWalletRemoval = (): void => {
+    disconnectMetamask();
+    removeWallet();
   };
 
   const router = useRouter();
@@ -79,7 +103,7 @@ const Nav = () => {
           )}
 
           <div className='nav-btn-container'>
-            {!walletConnected ? (
+            {!web3reactContext.account ? (
               <>
                 {width > 480 ? (
                   <button
@@ -103,12 +127,21 @@ const Nav = () => {
             ) : (
               <>
                 {width > 480 ? (
-                  <button onClick={removeWallet} className='nav-btn-primary'>
-                    Remove Wallet
+                  <button
+                    onClick={handleWalletRemoval}
+                    className='nav-btn-primary'
+                  >
+                    {`${web3reactContext.account.substring(
+                      0,
+                      4
+                    )}...${web3reactContext.account.substring(
+                      web3reactContext.account.length,
+                      web3reactContext.account.length - 5
+                    )}`}
                   </button>
                 ) : (
                   <button
-                    onClick={removeWallet}
+                    onClick={handleWalletRemoval}
                     className='nav-btn-primary compactBtn df-c'
                   >
                     <img
@@ -229,9 +262,14 @@ const Nav = () => {
               brightness(10%) contrast(73%);
           }
 
+          .nav-btn-container {
+            display: flex;
+            align-items: center;
+          }
+
           .nav-btn-primary {
             padding: 15px 30px;
-            margin-right: 20px;
+            margin-right: 10px;
             color: var(--primaryColor);
             font-size: 14px;
             font-weight: bold;

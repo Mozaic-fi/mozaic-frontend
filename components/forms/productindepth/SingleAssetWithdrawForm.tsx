@@ -42,7 +42,7 @@ const SingleAssetWithdrawForm = ({
           automatically swap to one of the underlying pool token.
         </p>
 
-        <div className='df-sb label'>
+        <div className='df-sb label mb-1'>
           <label className='fs-s t-b' htmlFor='amount'>
             Enter Amount
           </label>
@@ -93,7 +93,7 @@ const SingleAssetWithdrawForm = ({
           <p className='fs-s tc-s'>$...</p>
         </div>
 
-        <div className='df-sb label'>
+        <div className='df-sb label mb-1'>
           <label className='fs-s t-b' htmlFor={tokenName}>
             {tokenName} Amount
           </label>

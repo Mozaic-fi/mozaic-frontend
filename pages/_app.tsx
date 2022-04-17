@@ -5,10 +5,10 @@ import Head from 'next/head';
 import Layout from '../components/layout/Layout';
 import type { AppProps } from 'next/app';
 
-import '../styles/globals.css';
 import '../styles/commons.css';
-import '../styles/transitions.css';
+import '../styles/globals.css';
 import '../styles/layout.css';
+import '../styles/transitions.css';
 import { AuthProvider } from '../context/AuthContext';
 import { NotificationProvider } from '../context/NotificationContext';
 
@@ -21,15 +21,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <NotificationProvider>
+      <NotificationProvider>
+        <Web3ReactProvider getLibrary={getLibrary}>
           <AuthProvider>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </AuthProvider>
-        </NotificationProvider>
-      </Web3ReactProvider>
+        </Web3ReactProvider>
+      </NotificationProvider>
       <style jsx global>
         {``}
       </style>
