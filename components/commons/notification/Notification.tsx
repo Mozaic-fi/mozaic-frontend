@@ -51,7 +51,7 @@ const Notification = (props: any) => {
       <div
         onMouseEnter={handlePauseTimer}
         onMouseLeave={handleStartTimer}
-        className={`notification-item ${
+        className={`notification-item glow ${
           props.type === 'SUCCESS' ? 'success' : 'error'
         } ${exit ? 'exit' : ''}`}
       >
@@ -71,9 +71,9 @@ const Notification = (props: any) => {
             margin-bottom: 20px;
             animation: SlideLeft 0.4s;
             animation-fill-mode: forwards;
-            height: 50px;
+            height: 64px;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.164);
+            background-color: var(--bgPrimary);
           }
 
           @keyframes SlideLeft {
@@ -108,26 +108,26 @@ const Notification = (props: any) => {
           }
 
           .notification-item.success p {
-            color: #ffbb00b0;
+            color: var(--primaryColor);
           }
 
           .notification-item.error p {
-            color: rgba(255, 38, 0, 0.822);
+            color: var(--alert);
           }
 
           .notification-item .bar {
-            height: 1px;
+            height: 2px;
             position: absolute;
             bottom: 0;
             left: 0;
           }
 
           .notification-item.success .bar {
-            background-color: #ffbb0060;
+            background-color: var(--primaryColor);
           }
 
           .notification-item.error .bar {
-            background-color: rgba(255, 38, 0, 0.664);
+            background-color: var(--alert);
           }
         `}
       </style>

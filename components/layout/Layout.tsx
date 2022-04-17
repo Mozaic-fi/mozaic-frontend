@@ -1,10 +1,32 @@
 import Nav from '../commons/nav/Nav';
+import { useWeb3React } from '@web3-react/core';
+import { useEffect } from 'react';
+import { useNotification } from '../../hooks/useNotification';
 
 type Props = {
   children: JSX.Element;
 };
 
 const Layout = ({ children }: Props) => {
+  const web3reactContext = useWeb3React();
+  const dispatch = useNotification();
+  const handleNewNotification = (type: string, message: string) => {
+    dispatch({
+      type: type,
+      message: message,
+    });
+  };
+  useEffect(() => {
+    handleNewNotification(
+      `${web3reactContext.account ? 'SUCCESS' : 'ERROR'}`,
+      `${
+        web3reactContext.account
+          ? `Wallet ${web3reactContext.account} connected`
+          : 'Wallet not connected'
+      }`
+    );
+  }, [web3reactContext.account]);
+
   return (
     <>
       <Nav />

@@ -28,8 +28,8 @@ export const NotificationProvider = (props: any) => {
         {`
           .notification-wrapper {
             position: fixed;
-            top: 106px;
-            right: 10px;
+            top: 126px;
+            right: 30px;
             width: 50vw;
             min-width: 300px;
             z-index: 99999;
