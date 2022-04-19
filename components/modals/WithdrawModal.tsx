@@ -1,30 +1,44 @@
 import { useState, useEffect } from 'react';
+import { useWeb3React } from '@web3-react/core';
 import ConnectWalletModal from './ConnectWalletModal';
-import useAuth from '../../hooks/useAuth';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import Modal from './Modal';
 import SingleAssetWithdrawForm from '../forms/productindepth/SingleAssetWithdrawForm';
 import MultiAssetWithdrawForm from '../forms/productindepth/MultiAssetWithdrawForm';
 
+type withdrawData = {
+  tokenID: any;
+  slippage: number;
+  amount: number;
+};
+
 const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
-  const { walletConnected } = useAuth();
+  const web3reactContext = useWeb3React();
+
   const { width, height } = useWindowDimensions();
 
   let multiAssetInitialValue: any = [];
+
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('single');
-  const [singleAssetWithdraw, setSingleAssetWithdraw] = useState({
+
+  const [singleAssetWithdraw, setSingleAssetWithdraw] = useState<withdrawData>({
     tokenID: '',
-    slippage: '0.5',
-    amount: '',
-    isMax: false,
+    slippage: 0.5,
+    amount: 123,
   });
+
+  const [max, setMax] = useState<boolean>(false);
+
+  const setMaxBalance = (token: any, balance: number): void => {};
+
+  // form input data
 
   availableToken.forEach(
     (token: any) =>
       (multiAssetInitialValue = [
         ...multiAssetInitialValue,
-        { tokenID: token.id, slippage: 0.5, amount: 0, isMax: false },
+        { tokenID: token.id, slippage: 0.5, amount: 0 },
       ])
   );
 
@@ -32,7 +46,12 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
     multiAssetInitialValue
   );
 
+  // Tab
+
   const handleTab = (tabName: string): void => setActiveTab(tabName);
+
+  // withdraw fund
+
   const handleWithdraw = (mode: string): void => {
     if (mode === 'single') {
       console.log(singleAssetWithdraw);
@@ -42,6 +61,11 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
     }
   };
 
+  useEffect(() => {
+    if (singleAssetWithdraw.amount > 0) {
+    }
+  }, []);
+
   return (
     <>
       <Modal
@@ -50,6 +74,8 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
         w={width > 770 ? '770px' : '100%'}
       >
         <>
+          {/* tab */}
+
           <div className='tab-container mb-5'>
             <div
               onClick={() => handleTab('single')}
@@ -68,12 +94,16 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
               Multi Asset
             </div>
           </div>
+
+          {/* form */}
+
           {activeTab === 'single' && (
             <SingleAssetWithdrawForm
               availableToken={availableToken}
               singleAssetWithdraw={singleAssetWithdraw}
               setSingleAssetWithdraw={setSingleAssetWithdraw}
               tokenName={tokenName}
+              setMax={setMaxBalance}
             />
           )}
 
@@ -86,7 +116,7 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
             />
           )} */}
 
-          {!walletConnected ? (
+          {!web3reactContext.account ? (
             <button
               onClick={() => setIsOpen(!isOpen)}
               className='btn-primary w-100'

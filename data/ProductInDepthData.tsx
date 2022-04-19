@@ -26,33 +26,33 @@ export const filterByDataType: dataType[] = [
 
 export const filterByTime: dataType[] = [
   {
-    id: 1,
+    id: 11,
     name: '1D',
     value: '1d',
   },
   {
-    id: 2,
+    id: 22,
     name: '1W',
     value: '1w',
   },
   {
-    id: 3,
+    id: 33,
     name: '1M',
     value: '1m',
   },
   {
-    id: 4,
+    id: 44,
     name: '3M',
     value: '3m',
   },
   {
-    id: 5,
+    id: 55,
     name: '6M',
     value: '6m',
   },
   {
-    id: 6,
-    name: '1Y',
+    id: 66,
+    name: 'YTD',
     value: '1y',
   },
 ];
@@ -95,6 +95,7 @@ export const productData = {
     predictedApy: 4,
   },
   aum: {
+    id: 1,
     name: 'Assets Under Management',
     value: 8197319912.78,
     data: [
@@ -376,6 +377,7 @@ export const productData = {
     ],
   },
   ip: {
+    id: 2,
     name: 'Index Price',
     value: 2419.37,
     monthlyReturn: -2.9,
@@ -438,6 +440,7 @@ export const productData = {
     ],
   },
   apy: {
+    id: 3,
     name: 'Annual Percentage Yield',
     value: 8197319912.78,
     data: [
@@ -727,6 +730,7 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 0,
+      balance: 5465.5,
     },
     {
       id: 2,
@@ -736,6 +740,7 @@ export const productData = {
       price: 1844,
       apy: 'none',
       strategy: 2,
+      balance: 5465.5,
     },
     {
       id: 3,
@@ -745,6 +750,7 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 1,
+      balance: 5465.5,
     },
     {
       id: 4,
@@ -754,6 +760,7 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 0,
+      balance: 5465.5,
     },
   ],
   matrix: [
@@ -823,5 +830,11 @@ export const bottomCardContent: {
       'The vault gives users exposure to a specific category of tokens. Every hour the vault rebalanced the portfolio according to our modelling system and then rotates the tokens to the highest rewarding protocol to farm with.',
   },
 ];
+
+export const userData = {
+  walletAddress: '',
+  balance: '',
+  tokenBalance: {},
+};
 
 export default function ProductInDepthData() {}

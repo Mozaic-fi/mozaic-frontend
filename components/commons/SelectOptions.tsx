@@ -1,3 +1,5 @@
+import React from 'react';
+
 const SelectOptions = ({
   type = 'dropdown',
   options = [],
@@ -40,25 +42,26 @@ const SelectOptions = ({
       )}
       {type === 'range' && (
         <div className='select-container range'>
-          {options.map((option: { id: any; value: string; name: string }) => (
-            <>
-              <button
-                key={option.id}
-                onClick={
-                  !handleClick
-                    ? selectOptHandler
-                    : (e: any) => {
-                        handleClick(e.target.value);
-                      }
-                }
-                value={option.value}
-                className={option.value === selectedVal ? 'active' : ''}
-              >
-                {option.name}
-              </button>
-              <div className='separator'></div>
-            </>
-          ))}
+          {options.map(
+            (option: { id: any; value: string; name: string }, i: any) => (
+              <React.Fragment key={option.id}>
+                <button
+                  onClick={
+                    !handleClick
+                      ? selectOptHandler
+                      : (e: any) => {
+                          handleClick(e.target.value);
+                        }
+                  }
+                  value={option.value}
+                  className={option.value === selectedVal ? 'active' : ''}
+                >
+                  {option.name}
+                </button>
+                <div className='separator'></div>
+              </React.Fragment>
+            )
+          )}
         </div>
       )}
       <style jsx>
