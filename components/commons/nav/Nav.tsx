@@ -1,49 +1,35 @@
 import { useWeb3React } from '@web3-react/core';
-import {
-  injected,
-  walletconnect,
-  resetWalletConnector,
-} from '../../../helpers/connectors';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Menu from './Menu';
 import MobileNav from './MobileNav';
-import useAuth from '../../../hooks/useAuth';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import ConnectWalletModal from '../../modals/ConnectWalletModal';
+import WalletDetailMenu from './WalletDetailMenu';
 
 const Nav = () => {
   const web3reactContext = useWeb3React();
 
-  // disconnect metamask
-
-  const disconnectMetamask = () => {
-    try {
-      web3reactContext.deactivate();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const { walletConnected, removeWallet } = useAuth();
   const { height, width } = useWindowDimensions();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showWalletMenu, setShowWalletMenu] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
+  const handleWalletMenu = () => {
+    setShowMenu(false);
+    setShowWalletMenu(!showWalletMenu);
+  };
+
   const handleMenu = () => {
+    setShowWalletMenu(false);
     setShowMenu(!showMenu);
   };
 
   const handleWalletModal = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleWalletRemoval = (): void => {
-    disconnectMetamask();
-    removeWallet();
   };
 
   const router = useRouter();
@@ -75,6 +61,22 @@ const Nav = () => {
     },
   ];
 
+  const OverlayBtn = ({ handleItem }: any): JSX.Element => {
+    return (
+      <div
+        onClick={handleItem}
+        style={{
+          backgroundColor: '#00000010',
+          position: 'absolute',
+          zIndex: '9999999',
+          top: 0,
+          left: 0,
+        }}
+        className='w-f h-f'
+      ></div>
+    );
+  };
+
   return (
     <>
       <div className='nav-bg'></div>
@@ -103,53 +105,50 @@ const Nav = () => {
           )}
 
           <div className='nav-btn-container'>
+            {/* Connect Wallet Button & Menu */}
+
             {!web3reactContext.account ? (
-              <>
+              <button
+                onClick={handleWalletModal}
+                className={`nav-btn-primary ${
+                  width < 480 && 'compactBtn df-c'
+                }`}
+              >
                 {width > 480 ? (
-                  <button
-                    onClick={handleWalletModal}
-                    className='nav-btn-primary'
-                  >
-                    Connect Wallet
-                  </button>
+                  'Connect Wallet'
                 ) : (
-                  <button
-                    onClick={handleWalletModal}
-                    className='nav-btn-primary compactBtn'
-                  >
-                    <img
-                      src='/assets/icons/nav/ico.connectwallet.compact.svg'
-                      alt=''
-                    />
-                  </button>
+                  <img
+                    src='/assets/icons/nav/ico.connectwallet.compact.svg'
+                    alt=''
+                  />
                 )}
-              </>
+              </button>
             ) : (
               <>
-                {width > 480 ? (
-                  <button
-                    onClick={handleWalletRemoval}
-                    className='nav-btn-primary'
-                  >
-                    {`${web3reactContext.account.substring(
-                      0,
-                      4
-                    )}...${web3reactContext.account.substring(
-                      web3reactContext.account.length,
-                      web3reactContext.account.length - 5
-                    )}`}
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleWalletRemoval}
-                    className='nav-btn-primary compactBtn df-c'
-                  >
+                <button
+                  onClick={handleWalletMenu}
+                  className={`nav-btn-primary ${
+                    width < 480 && 'compactBtn df-c'
+                  }`}
+                >
+                  {width > 480 ? (
+                    <>
+                      {`${web3reactContext.account.substring(0, 4)} 
+                      ...${web3reactContext.account.substring(
+                        web3reactContext.account.length,
+                        web3reactContext.account.length - 5
+                      )}`}
+                    </>
+                  ) : (
                     <img
                       src='/assets/icons/nav/ico.connectwallet.compact.svg'
                       alt='connect wallet'
                     />
-                  </button>
-                )}
+                  )}
+                  {showWalletMenu && (
+                    <WalletDetailMenu setShowWalletMenu={setShowWalletMenu} />
+                  )}
+                </button>
               </>
             )}
 
@@ -160,17 +159,8 @@ const Nav = () => {
           </div>
         </div>
       </header>
-      {showMenu && (
-        <div
-          onClick={handleMenu}
-          style={{
-            backgroundColor: '#00000010',
-            position: 'absolute',
-            zIndex: 'inherit',
-          }}
-          className='w-f h-f'
-        ></div>
-      )}
+      {showMenu && <OverlayBtn handleItem={handleMenu} />}
+      {showWalletMenu && <OverlayBtn handleItem={handleWalletMenu} />}
       {isOpen && <ConnectWalletModal setIsOpen={setIsOpen} />}
       <style jsx>
         {`
@@ -268,6 +258,7 @@ const Nav = () => {
           }
 
           .nav-btn-primary {
+            position: relative;
             padding: 15px 30px;
             margin-right: 10px;
             color: var(--primaryColor);

@@ -9,22 +9,17 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const web3reactContext = useWeb3React();
-  const dispatch = useNotification();
-  const handleNewNotification = (type: string, message: string) => {
-    dispatch({
-      type: type,
-      message: message,
-    });
-  };
+  const dispatchNotification = useNotification();
+
   useEffect(() => {
-    handleNewNotification(
-      `${web3reactContext.account ? 'SUCCESS' : 'ERROR'}`,
-      `${
+    dispatchNotification({
+      type: `${web3reactContext.account ? 'SUCCESS' : 'ERROR'}`,
+      message: `${
         web3reactContext.account
-          ? `Wallet ${web3reactContext.account} connected`
-          : 'Wallet not connected'
-      }`
-    );
+          ? `Wallet ${web3reactContext.account} connected!`
+          : 'Wallet disconnected!'
+      }`,
+    });
   }, [web3reactContext.account]);
 
   return (

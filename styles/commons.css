@@ -72,6 +72,10 @@
   background-color: var(--bgSecondary);
 }
 
+.bg-pc {
+  background-color: var(--primaryColor) !important;
+}
+
 /* text */
 
 .pt-t {
@@ -223,4 +227,11 @@
 .btn-primary:hover {
   background-color: var(--primaryColor);
   color: var(--bgPrimary);
+}
+
+/* separator */
+
+.separator {
+  height: 1px;
+  background-color: var(--textSecondary50);
 }
