@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Modal from '../../modals/Modal';
+import { SetStateAction, useState } from 'react';
+import Modal from './Modal';
 
 const ValueEditorModal = ({
   title = 'Value Editor',
@@ -7,8 +7,14 @@ const ValueEditorModal = ({
   closeModal,
   value,
   setValue,
+}: {
+  title: string;
+  type?: string;
+  closeModal: Function;
+  value: number;
+  setValue: SetStateAction<any>;
 }) => {
-  const [newValue, setNewValue] = useState(value);
+  const [newValue, setNewValue] = useState<any>(value);
   const handleSubmit = () => {
     setValue(newValue);
     closeModal(false);

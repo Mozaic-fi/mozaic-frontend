@@ -1,10 +1,11 @@
 import React from 'react';
 import { useWeb3React } from '@web3-react/core';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
-import { NewNotification } from '../notification/NewNotification';
 import { useNotification } from '../../../hooks/useNotification';
 
 export default function WalletDetailMenu(setShowWalletMenu: any) {
+  const dispatchNotification = useNotification();
+
   const web3reactContext = useWeb3React();
   const { height, width } = useWindowDimensions();
   const dispatch = useNotification();
@@ -18,7 +19,12 @@ export default function WalletDetailMenu(setShowWalletMenu: any) {
   };
 
   const handleWalletRemoval = (): void => {
+    console.log('we3Context', web3reactContext);
     removeWallet();
+    dispatchNotification({
+      type: 'ERROR',
+      message: `Wallet disconnected!`,
+    });
   };
 
   function copy() {
@@ -48,7 +54,9 @@ export default function WalletDetailMenu(setShowWalletMenu: any) {
           </button>
         </div>
         <div className='w-100 df-c pb-1'>
-          <p className='fs-xxs ta-c w-100 tc-s'>{web3reactContext.account}</p>
+          <p onClick={copy} className='wallet-address fs-xxs ta-c w-100 tc-s'>
+            {web3reactContext.account}
+          </p>
         </div>
         <div className='separator bg-pc mt-1 w-100'></div>
         <div className='df-sb w-100 pl-4 pr-4 mt-2'>
@@ -64,6 +72,9 @@ export default function WalletDetailMenu(setShowWalletMenu: any) {
               Balance:
             </p>
           </div>
+
+          {/* MOZ Balance */}
+
           <p className='tc-h fs-xl fw-b'>12345.32</p>
         </div>
         <div
@@ -89,6 +100,11 @@ export default function WalletDetailMenu(setShowWalletMenu: any) {
             padding: 20px 0;
             color: white;
             font-weight: 400;
+            cursor: default;
+          }
+
+          .wallet-address {
+            cursor: copy;
           }
 
           .triangle {
@@ -135,6 +151,7 @@ export default function WalletDetailMenu(setShowWalletMenu: any) {
             text-decoration: underline;
             margin-left: auto;
             margin-right: auto;
+            cursor: pointer;
 
             &:hover {
               color: white;

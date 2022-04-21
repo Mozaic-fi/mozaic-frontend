@@ -1,10 +1,10 @@
-import ReactDOM from "react-dom"
+import ReactDOM from 'react-dom';
 
 const Portal = (Component) => (props) => {
-    return ReactDOM.createPortal(
-        <Component {...props} />,
-        document.getElementById("myportal")
-    )
-}
+  return ReactDOM.createPortal(
+    <Component {...props} />,
+    document.getElementById('myportal')
+  );
+};
 
 export default Portal;

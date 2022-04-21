@@ -62,7 +62,7 @@ const ConnectWalletModal = ({ setIsOpen }: any) => {
         <>
           <div onClick={() => handleConnectWallet(0)} className='walletbtn'>
             <img src='/assets/icons/wallets/ico.metamask.svg' alt='' />
-            <p className='tc-s'>META MASK</p>
+            <p className='tc-s'>METAMASK</p>
           </div>
           <div onClick={() => handleConnectWallet(1)} className='walletbtn'>
             <img src='/assets/icons/wallets/ico.walletconnect.svg' alt='' />

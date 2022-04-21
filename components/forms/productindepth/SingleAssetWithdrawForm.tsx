@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
-import ValueEditorModal from '../../commons/modals/ValueEditorModal';
+import ValueEditorModal from '../../modals/ValueEditorModal';
 
 const SingleAssetWithdrawForm = ({
   availableToken,
@@ -106,14 +106,14 @@ const SingleAssetWithdrawForm = ({
               <p className='fs-xs tc-p mr-1'>{singleAssetWithdraw.slippage}%</p>
               <img src='/assets/icons/ico.edit.svg'></img>
             </div>
-            {/* {isValueEditor && (
+            {isValueEditor && (
               <ValueEditorModal
                 title='Set Slippage Value'
                 closeModal={setValueEditor}
                 value={singleAssetWithdraw.slippage}
                 setValue={setSlippage}
               />
-            )} */}
+            )}
           </div>
         </div>
 
@@ -127,7 +127,7 @@ const SingleAssetWithdrawForm = ({
             type='number'
           />
           <div className='df-sb'>
-            <p className='tc-s ml-2'>{tokenName}</p>
+            <p className='tc-s ml-2 mr-2'>{tokenName}</p>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ const SingleAssetWithdrawForm = ({
         </div>
       </div>
 
-      <style jsx>
+      <style jsx global>
         {`
           input {
             border: none;
@@ -203,12 +203,18 @@ const SingleAssetWithdrawForm = ({
             color: rgba(255, 255, 255, 0.5);
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
+            cursor: pointer;
           }
 
           .max-btn.active {
             color: #ffbb00;
             background-color: #ffbb0010;
           }
+
+          .slippage {
+            cursor: pointer;
+          }
+
           .slippage.max-btn {
             padding-right: 0 !important;
           }

@@ -125,7 +125,7 @@ const Nav = () => {
               </button>
             ) : (
               <>
-                <button
+                <div
                   onClick={handleWalletMenu}
                   className={`nav-btn-primary ${
                     width < 480 && 'compactBtn df-c'
@@ -148,7 +148,7 @@ const Nav = () => {
                   {showWalletMenu && (
                     <WalletDetailMenu setShowWalletMenu={setShowWalletMenu} />
                   )}
-                </button>
+                </div>
               </>
             )}
 

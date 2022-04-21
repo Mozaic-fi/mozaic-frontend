@@ -12,15 +12,29 @@ const Layout = ({ children }: Props) => {
   const dispatchNotification = useNotification();
 
   useEffect(() => {
-    dispatchNotification({
-      type: `${web3reactContext.account ? 'SUCCESS' : 'ERROR'}`,
-      message: `${
-        web3reactContext.account
-          ? `Wallet ${web3reactContext.account} connected!`
-          : 'Wallet disconnected!'
-      }`,
-    });
-  }, [web3reactContext.account]);
+    // dispatchNotification({
+    //   type: `${web3reactContext.account ? 'SUCCESS' : 'ERROR'}`,
+    //   message: `${
+    //     web3reactContext.account
+    //       ? `Wallet ${web3reactContext.account} connected!`
+    //       : 'Wallet disconnected!'
+    //   }`,
+    // });
+
+    if (web3reactContext.account) {
+      dispatchNotification({
+        type: 'SUCCESS',
+        message: `Wallet ${web3reactContext.account} connected!`,
+      });
+    }
+
+    if (web3reactContext.error) {
+      dispatchNotification({
+        type: 'ERROR',
+        message: web3reactContext.error.message,
+      });
+    }
+  }, [web3reactContext]);
 
   return (
     <>
