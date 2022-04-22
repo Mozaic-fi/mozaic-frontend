@@ -7,7 +7,7 @@ const RPC_URLS = {
 };
 
 // metamask
-export const injected: any = new InjectedConnector(<any>{
+export const injected = new InjectedConnector(<any>{
   supportedChainIds: [1, 3, 4, 5, 42],
 });
 

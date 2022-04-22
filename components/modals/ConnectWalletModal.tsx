@@ -4,11 +4,9 @@ import {
   walletconnect,
   resetWalletConnector,
 } from '../../helpers/connectors';
-import useAuth from '../../hooks/useAuth';
 import Modal from './Modal';
 
 const ConnectWalletModal = ({ setIsOpen }: any) => {
-  const { walletConnected, addWallet, removeWallet } = useAuth();
   const web3reactContext = useWeb3React();
 
   //web3react context
@@ -26,7 +24,7 @@ const ConnectWalletModal = ({ setIsOpen }: any) => {
     try {
       await web3reactContext.activate(injected).then(() => {
         setIsOpen(false);
-        addWallet();
+        // addWallet();
       });
       checkInfo();
     } catch (error) {
@@ -39,7 +37,7 @@ const ConnectWalletModal = ({ setIsOpen }: any) => {
     try {
       resetWalletConnector(walletconnect);
       await web3reactContext.activate(walletconnect).then(() => {
-        addWallet();
+        // addWallet();
         setIsOpen(false);
       });
     } catch (error) {

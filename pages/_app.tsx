@@ -1,5 +1,6 @@
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
+import Web3 from 'web3';
 
 import Head from 'next/head';
 import Layout from '../components/layout/Layout';
@@ -14,8 +15,7 @@ import { NotificationProvider } from '../context/NotificationContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const getLibrary = (provider: any) => {
-    const library = new Web3Provider(provider, 'any');
-    library.pollingInterval = 15000;
+    const library = new Web3(provider);
     return library;
   };
 
