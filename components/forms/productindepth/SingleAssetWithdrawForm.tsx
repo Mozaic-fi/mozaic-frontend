@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import useBalance from '../../../hooks/useBalance';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 import ValueEditorModal from '../../modals/ValueEditorModal';
+import InputForm from './InputForm';
 
 const SingleAssetWithdrawForm = ({
   availableToken,
@@ -11,16 +13,22 @@ const SingleAssetWithdrawForm = ({
 }: any) => {
   const { width, height } = useWindowDimensions();
   const [isValueEditor, setValueEditor] = useState<boolean>(false);
-  const [showList, setShowList] = useState(false);
+  // const [showList, setShowList] = useState(false);
   const [token, setToken] = useState(availableToken[0].id);
   const currToken = availableToken.filter((i: any) => i.id === token)[0];
   const [calcAmount, setCalcAmount] = useState(0.0);
-  const handleTokenSelection = () => setShowList(!showList);
+  // const handleTokenSelection = () => setShowList(!showList);
 
   const calculateAmount = () => {
     setCalcAmount(12345);
     console.log(calcAmount);
   };
+
+  // const maxBalance = useBalance;
+
+  // const getBalance = (address: string, decimal: number) => {
+  //   console.log(maxBalance(address, decimal));
+  // };
 
   const setSlippage = (value: number) => {
     setSingleAssetWithdraw({ ...singleAssetWithdraw, slippage: value });
@@ -48,7 +56,9 @@ const SingleAssetWithdrawForm = ({
           </label>
         </div>
 
-        <div className='input-container rounded'>
+        <InputForm availableTokens={availableToken} />
+
+        {/* <div className='input-container rounded'>
           <input
             placeholder='0.00'
             className='fs-xl ff-2 tc-p'
@@ -87,7 +97,7 @@ const SingleAssetWithdrawForm = ({
               />
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className='df-sb'>
           <p className='fs-s tc-s'>$...</p>

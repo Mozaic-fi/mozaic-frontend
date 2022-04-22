@@ -1,5 +1,5 @@
 const DropdownWithIcons = ({
-  option,
+  selectedOption,
   setOption,
   options,
   handleOptionSelection,
@@ -9,24 +9,21 @@ const DropdownWithIcons = ({
   return (
     <>
       <div onClick={handleOptionSelection} className='selected-option rounded'>
-        <img
-          src={options.filter((e: any) => e.id === option)[0].icoSrc}
-          alt=''
-        />
-        <p>{options.filter((e: any) => e.id === option)[0].name}</p>
+        <img src={selectedOption.icoSrc} alt='' />
+        <p>{selectedOption.symbol}</p>
         {showList && (
           <div className='selector-dropdown glow'>
             {options.map((option: any) => (
               <div
                 className='option'
                 onClick={() => {
-                  setOption(option.id);
+                  setOption(option);
                   handleOptionSelection();
                 }}
                 key={option.id}
               >
                 <img src={option.icoSrc} alt='' />
-                <p>{option.name}</p>
+                <p>{option.symbol}</p>
               </div>
             ))}
           </div>
