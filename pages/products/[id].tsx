@@ -135,7 +135,7 @@ const Product = () => {
                   <WithdrawModal
                     closeModal={setIsOpenWM}
                     availableToken={productData.tokens}
-                    tokenName={productData.tokenName}
+                    vault={productData.vault}
                   />
                 )}
               </div>

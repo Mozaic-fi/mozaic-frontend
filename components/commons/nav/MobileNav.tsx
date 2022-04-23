@@ -1,18 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-type NavItem = {
-  id: any;
-  name: string;
-  path: string;
-};
-
-type MenuItem = {
-  id: any;
-  name: string;
-  path: string;
-  icoSrc: string;
-};
+import { menuItems, navItems } from '../../../data/NavData';
 
 const MobileNav = () => {
   const router = useRouter();
@@ -20,62 +8,6 @@ const MobileNav = () => {
     if (router.asPath === path) return 'active';
     return '';
   };
-
-  const navItems: NavItem[] = [
-    {
-      id: 1,
-      name: 'Products',
-      path: '/',
-    },
-    {
-      id: 2,
-      name: 'Stake',
-      path: '/stake',
-    },
-    {
-      id: 3,
-      name: 'Bond',
-      path: '/bond',
-    },
-    {
-      id: 4,
-      name: 'Vote',
-      path: '/vote',
-    },
-  ];
-
-  const menuItems: MenuItem[] = [
-    {
-      id: 1,
-      name: 'Mozaic',
-      path: '/home',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.home.svg',
-    },
-    {
-      id: 2,
-      name: 'General Feedback',
-      path: '/feedback',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.feedback.svg',
-    },
-    {
-      id: 3,
-      name: 'Bug Report',
-      path: '/report',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.bug.svg',
-    },
-    {
-      id: 4,
-      name: 'User',
-      path: '/user',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.user.svg',
-    },
-    {
-      id: 5,
-      name: 'Governance',
-      path: '/governance',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.governance.svg',
-    },
-  ];
 
   return (
     <>

@@ -31,22 +31,22 @@ export let products = [
     tokens: [
       {
         id: 1,
-        name: 'LINK',
+        symbol: 'LINK',
         icoSrc: '/assets/icons/tokens/ico.token.link.svg',
       },
       {
         id: 2,
-        name: 'AVAX',
+        symbol: 'AVAX',
         icoSrc: '/assets/icons/tokens/ico.token.avax.svg',
       },
       {
         id: 3,
-        name: 'WBTC',
+        symbol: 'WBTC',
         icoSrc: '/assets/icons/tokens/ico.token.wbtc.svg',
       },
       {
         id: 4,
-        name: 'WETH',
+        symbol: 'WETH',
         icoSrc: '/assets/icons/tokens/ico.token.weth.svg',
       },
     ],
@@ -64,22 +64,22 @@ export let products = [
     tokens: [
       {
         id: 1,
-        name: 'LINK',
+        symbol: 'LINK',
         icoSrc: '/assets/icons/tokens/ico.token.link.svg',
       },
       {
         id: 2,
-        name: 'AVAX',
+        symbol: 'AVAX',
         icoSrc: '/assets/icons/tokens/ico.token.avax.svg',
       },
       {
         id: 3,
-        name: 'WBTC',
+        symbol: 'WBTC',
         icoSrc: '/assets/icons/tokens/ico.token.wbtc.svg',
       },
       {
         id: 4,
-        name: 'WETH',
+        symbol: 'WETH',
         icoSrc: '/assets/icons/tokens/ico.token.weth.svg',
       },
     ],
@@ -97,22 +97,22 @@ export let products = [
     tokens: [
       {
         id: 1,
-        name: 'LINK',
+        symbol: 'LINK',
         icoSrc: '/assets/icons/tokens/ico.token.link.svg',
       },
       {
         id: 2,
-        name: 'AVAX',
+        symbol: 'AVAX',
         icoSrc: '/assets/icons/tokens/ico.token.avax.svg',
       },
       {
         id: 3,
-        name: 'WBTC',
+        symbol: 'WBTC',
         icoSrc: '/assets/icons/tokens/ico.token.wbtc.svg',
       },
       {
         id: 4,
-        name: 'WETH',
+        symbol: 'WETH',
         icoSrc: '/assets/icons/tokens/ico.token.weth.svg',
       },
     ],

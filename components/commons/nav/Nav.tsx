@@ -1,5 +1,4 @@
 import { useWeb3React } from '@web3-react/core';
-
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -8,10 +7,10 @@ import MobileNav from './MobileNav';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import ConnectWalletModal from '../../modals/ConnectWalletModal';
 import WalletDetailMenu from './WalletDetailMenu';
+import { navItems } from '../../../data/NavData';
 
 const Nav = () => {
   const web3reactContext = useWeb3React();
-
   const { height, width } = useWindowDimensions();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,29 +36,6 @@ const Nav = () => {
     if (router.asPath === path) return 'active';
     return '';
   };
-
-  const navItems: { id: any; name: string; path: string }[] = [
-    {
-      id: 1,
-      name: 'Products',
-      path: '/',
-    },
-    {
-      id: 2,
-      name: 'Stake',
-      path: '/stake',
-    },
-    {
-      id: 3,
-      name: 'Bond',
-      path: '/bond',
-    },
-    {
-      id: 4,
-      name: 'Vote',
-      path: '/vote',
-    },
-  ];
 
   const OverlayBtn = ({ handleItem }: any): JSX.Element => {
     return (

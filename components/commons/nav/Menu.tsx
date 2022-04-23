@@ -1,46 +1,7 @@
 import Link from 'next/link';
+import { menuItems } from '../../../data/NavData';
 
 const Menu = () => {
-  interface MenuItem {
-    id: any;
-    name: string;
-    path: string;
-    icoSrc: string;
-  }
-
-  const menuItems: Array<MenuItem> = [
-    {
-      id: 1,
-      name: 'Mozaic',
-      path: '/home',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.home.svg',
-    },
-    {
-      id: 2,
-      name: 'General Feedback',
-      path: '/feedback',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.feedback.svg',
-    },
-    {
-      id: 3,
-      name: 'Bug Report',
-      path: '/report',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.bug.svg',
-    },
-    {
-      id: 4,
-      name: 'User',
-      path: '/user',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.user.svg',
-    },
-    {
-      id: 5,
-      name: 'Governance',
-      path: '/governance',
-      icoSrc: '/assets/icons/nav/navMenu/ico.menu.governance.svg',
-    },
-  ];
-
   return (
     <>
       <div className='menu-overlay'></div>
