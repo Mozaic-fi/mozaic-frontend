@@ -7,7 +7,6 @@ import {
 import { getERC20Contract } from '../store/contractStore';
 import BigNumber from 'bignumber.js';
 import BN from 'bn.js';
-// import Web3 from 'web3';
 
 export default function useBalance(tokenAddress: any, decimals: any) {
   const [balance, setBalance] = useState('0');

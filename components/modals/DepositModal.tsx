@@ -2,10 +2,10 @@ import Modal from './Modal';
 import { useState, useEffect } from 'react';
 import DropdownWithIcons from '../dropdown/DropdownWithIcons';
 import ConnectWalletModal from './ConnectWalletModal';
-import useWindowDimensions from '../../../hooks/useWindowDimension';
 import useAuth from '../../../hooks/useAuth';
 import SingleAssetDepositForm from '../../forms/productindepth/SingleAssetDepositForm';
 import MultiAssetDepositForm from '../../forms/productindepth/MultiAssetDepositForm';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const DepositModal = ({ closeModal, availableToken, tokenName }: any) => {
   const { walletConnected } = useAuth();

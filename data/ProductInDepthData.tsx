@@ -83,7 +83,13 @@ export const investmentTitles: { id: any; name: string }[] = [
 export const productData = {
   id: 1,
   name: 'Avalanche Majors',
-  tokenName: 'AVAM',
+  vault: {
+    name: 'Avalanche Major',
+    symbol: 'AVAM',
+    address: '0x0000000000000000000000000000000000000000',
+    decimals: 18,
+    tokenToUSDRate: 1234,
+  },
   icoSrc: '/assets/icons/products/ico.avalanchemajor.svg',
   summary: {
     depositors: 5,
@@ -734,14 +740,12 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 0,
-      balance: 5465.5,
+      tokenToUSDRate: 6.12,
     },
     {
       id: 2,
       name: 'Avalanche',
       symbol: 'AVAX',
-      // name: 'Dai Stablecoin',
-      // symbol: 'DAI',
       address: '0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa',
       decimals: 18,
       icoSrc: '/assets/icons/tokens/ico.token.avax.svg',
@@ -749,7 +753,7 @@ export const productData = {
       price: 1844,
       apy: 'none',
       strategy: 2,
-      balance: 5465.5,
+      tokenToUSDRate: 2.96,
     },
     {
       id: 3,
@@ -762,7 +766,7 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 1,
-      balance: 5465.5,
+      tokenToUSDRate: 2.43,
     },
     {
       id: 4,
@@ -775,7 +779,7 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 0,
-      balance: 5465.5,
+      tokenToUSDRate: 1.23,
     },
   ],
   matrix: [
@@ -846,10 +850,10 @@ export const bottomCardContent: {
   },
 ];
 
-export const userData = {
-  walletAddress: '',
-  balance: '',
-  tokenBalance: {},
-};
+// export const userData = {
+//   walletAddress: '',
+//   balance: '',
+//   tokenBalance: {},
+// };
 
 export default function ProductInDepthData() {}
