@@ -5,10 +5,11 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 import Modal from './Modal';
 import SingleAssetWithdrawForm from '../forms/productindepth/SingleAssetWithdrawForm';
 import MultiAssetWithdrawForm from '../forms/productindepth/MultiAssetWithdrawForm';
-import { randomUUID } from 'crypto';
 
 type InputData = {
   id: any;
+  name: string;
+  symbol: string;
   address: string;
   decimals: number;
   amount: number;
@@ -34,6 +35,8 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
       slippage: 0.5,
       from: {
         id: '',
+        name: '',
+        symbol: '',
         address: '',
         decimals: 0,
         amount: 0,
@@ -41,6 +44,8 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
       to: [
         {
           id: '',
+          name: '',
+          symbol: '',
           address: '',
           decimals: 0,
           amount: 0,

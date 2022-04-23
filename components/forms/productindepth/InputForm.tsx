@@ -1,22 +1,22 @@
-import { randomUUID } from 'crypto';
 import React, { SetStateAction, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import useBalance from '../../../hooks/useBalance';
 import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 
 export default function InputForm({
   form = 'withdraw',
   availableTokens,
-  token,
   setFromDropdown = false,
   type = 'input',
   setData,
   currentToken,
   setCurrentToken,
   vault,
+  calculatedAmount,
 }: {
   form?: string;
   availableTokens?: object[];
-  token?: object;
+  token?: any;
   setFromDropdown?: boolean;
   type?: string;
   input?: boolean;
@@ -25,25 +25,26 @@ export default function InputForm({
   setCurrentToken?: SetStateAction<any>;
   vault?: any;
   value?: number;
+  calculatedAmount?: number;
 }) {
   const [showList, setShowList] = useState(false);
-  const [amount, setAmount] = useState<any>();
+  const [amount, setAmount] = useState<any>(0);
   const [maxBalance] = useBalance(
-    form === 'withdraw' ? vault.address : currentToken.address,
-    form === 'withdraw' ? vault.decimals : currentToken.decimals
+    type !== 'input' ? currentToken.address : vault.address,
+    type !== 'input' ? currentToken.decimals : vault.decimals
   );
   const handleTokenSelection = () => setShowList(!showList);
 
   useEffect(() => {
     setData({
-      id: randomUUID,
-      name: (form = 'withdraw' ? vault.name : currentToken.name),
-      symbol: (form = 'withdraw' ? vault.symbol : currentToken.symbol),
-      address: (form = 'withdraw' ? vault.address : currentToken.address),
-      decimals: (form = 'withdraw' ? vault.decimals : currentToken.decimals),
-      amount: amount,
+      id: uuidv4(),
+      name: type !== 'input' ? currentToken.name : vault.name,
+      symbol: type !== 'input' ? currentToken.symbol : vault.symbol,
+      address: type !== 'input' ? currentToken.address : vault.address,
+      decimals: type !== 'input' ? currentToken.decimals : vault.decimals,
+      amount: type !== 'input' ? calculatedAmount : amount,
     });
-  }, [amount, currentToken, vault]);
+  }, [amount, currentToken, vault, calculatedAmount]);
 
   return (
     <>
@@ -56,7 +57,7 @@ export default function InputForm({
             setAmount(e.target.value);
           }}
           readOnly={type === 'output'}
-          value={amount ?? ''}
+          value={type === 'input' ? amount : calculatedAmount}
           type='number'
         />
         <div className='df-sb'>

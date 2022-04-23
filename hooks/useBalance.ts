@@ -19,7 +19,6 @@ export default function useBalance(tokenAddress: any, decimals: any) {
     function getBalance() {
       return new Promise((resolve) => {
         if (!library || !tokenAddress) {
-          console.log('hello 1', tokenAddress, account, library);
           resolve(new BN('0'));
           return;
         }
@@ -41,7 +40,7 @@ export default function useBalance(tokenAddress: any, decimals: any) {
               .balanceOf(account)
               .call()
               .then((value: any) => {
-                console.log('value', value);
+                // console.log('value', value);
 
                 resolve(new BN(value));
               })
@@ -58,7 +57,7 @@ export default function useBalance(tokenAddress: any, decimals: any) {
 
     async function run() {
       const bn = await getBalance();
-      console.log(bn);
+      // console.log(bn);
 
       if (!isCancelled) {
         const pow = new BigNumber('10').pow(new BigNumber(decimals));

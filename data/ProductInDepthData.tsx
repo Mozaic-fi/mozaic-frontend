@@ -88,7 +88,7 @@ export const productData = {
     symbol: 'AVAM',
     address: '0x0000000000000000000000000000000000000000',
     decimals: 18,
-    tokenToUSDRate: 1234,
+    rateUSD: 1234,
   },
   icoSrc: '/assets/icons/products/ico.avalanchemajor.svg',
   summary: {
@@ -740,7 +740,8 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 0,
-      tokenToUSDRate: 6.12,
+      rateUSD: 6.12,
+      rateVault: 0.432,
     },
     {
       id: 2,
@@ -753,7 +754,8 @@ export const productData = {
       price: 1844,
       apy: 'none',
       strategy: 2,
-      tokenToUSDRate: 2.96,
+      rateUSD: 2.96,
+      rateVault: 0.131,
     },
     {
       id: 3,
@@ -766,7 +768,8 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 1,
-      tokenToUSDRate: 2.43,
+      rateUSD: 2.43,
+      rateVault: 0.015,
     },
     {
       id: 4,
@@ -779,7 +782,8 @@ export const productData = {
       price: 1844,
       apy: '0.00%',
       strategy: 0,
-      tokenToUSDRate: 1.23,
+      rateUSD: 1.23,
+      rateVault: 0.142,
     },
   ],
   matrix: [
