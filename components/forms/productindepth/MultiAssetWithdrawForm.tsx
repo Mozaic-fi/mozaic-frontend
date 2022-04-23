@@ -1,4 +1,4 @@
-import useWindowDimensions from '../../../hooks/useWindowDimension';
+import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import { useState, useEffect } from 'react';
 import ValueEditorModal from '../../common/modals/ValueEditorModal';
 

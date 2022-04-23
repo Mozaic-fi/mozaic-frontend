@@ -24,7 +24,7 @@ const ValueEditorModal = ({
     <>
       <Modal title={title} closeModal={closeModal}>
         <>
-          <div className='input-container'>
+          <div className='input-container rounded'>
             <input
               onChange={(e) => setNewValue(e.target.value)}
               value={newValue}
@@ -32,7 +32,7 @@ const ValueEditorModal = ({
               step='any'
             />
           </div>
-          <button className='btn-primary fw' onClick={handleSubmit}>
+          <button className='btn-primary w-100' onClick={handleSubmit}>
             Save
           </button>
         </>

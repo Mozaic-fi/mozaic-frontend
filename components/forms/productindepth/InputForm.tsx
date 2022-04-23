@@ -1,59 +1,75 @@
+import { randomUUID } from 'crypto';
 import React, { SetStateAction, useEffect, useState } from 'react';
 import useBalance from '../../../hooks/useBalance';
 import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 
 export default function InputForm({
+  form = 'withdraw',
   availableTokens,
   token,
-  type = 'single asset',
-  setAmount,
+  setFromDropdown = false,
+  type = 'input',
+  setData,
+  currentToken,
+  setCurrentToken,
+  vault,
 }: {
+  form?: string;
   availableTokens?: object[];
   token?: object;
+  setFromDropdown?: boolean;
   type?: string;
-  setAmount?: SetStateAction<object>;
+  input?: boolean;
+  setData?: SetStateAction<any>;
+  currentToken?: any;
+  setCurrentToken?: SetStateAction<any>;
+  vault?: any;
+  value?: number;
 }) {
   const [showList, setShowList] = useState(false);
-  const [currentToken, setCurrentToken] = useState<any>(
-    availableTokens ? availableTokens[0] : token
+  const [amount, setAmount] = useState<any>();
+  const [maxBalance] = useBalance(
+    form === 'withdraw' ? vault.address : currentToken.address,
+    form === 'withdraw' ? vault.decimals : currentToken.decimals
   );
-
-  const [balance, setBalance] = useState<any>();
-
-  const [maxBalance] = useBalance(currentToken.address, currentToken.decimals);
-
   const handleTokenSelection = () => setShowList(!showList);
 
   useEffect(() => {
-    console.log(balance);
-    console.log(maxBalance);
-    console.log(currentToken);
-    // console.log(currentToken.address, currentToken.decimals);
-  }, [balance]);
+    setData({
+      id: randomUUID,
+      name: (form = 'withdraw' ? vault.name : currentToken.name),
+      symbol: (form = 'withdraw' ? vault.symbol : currentToken.symbol),
+      address: (form = 'withdraw' ? vault.address : currentToken.address),
+      decimals: (form = 'withdraw' ? vault.decimals : currentToken.decimals),
+      amount: amount,
+    });
+  }, [amount, currentToken, vault]);
 
   return (
     <>
       <div className='input-container rounded'>
         <input
           placeholder='0.00'
-          className='fs-xl ff-2 tc-p'
+          className={`fs-xl ff-2 tc-p ${type === 'output' ? 'tc-h' : ''}`}
           id='amount'
           onChange={(e) => {
-            setBalance(e.target.value);
-            // calculateAmount();
-            // console.log();
+            setAmount(e.target.value);
           }}
-          value={balance}
+          readOnly={type === 'output'}
+          value={amount ?? ''}
           type='number'
         />
         <div className='df-sb'>
-          <div
-            className={`max-btn mr-1 ${balance === maxBalance && 'active'}`}
-            onClick={() => setBalance(maxBalance)}
-          >
-            Max
-          </div>
-          {type === 'single asset' && (
+          {type === 'input' && (
+            <div
+              className={`max-btn mr-1 ${amount === maxBalance && 'active'}`}
+              onClick={() => setAmount(maxBalance)}
+            >
+              Max
+            </div>
+          )}
+
+          {setFromDropdown ? (
             <div className='dropdown'>
               <DropdownWithIcons
                 options={availableTokens}
@@ -62,6 +78,10 @@ export default function InputForm({
                 handleOptionSelection={handleTokenSelection}
                 showList={showList}
               />
+            </div>
+          ) : (
+            <div className='df-sb'>
+              <p className='tc-s ml-2 mr-2'>{vault.symbol}</p>
             </div>
           )}
         </div>

@@ -5,42 +5,60 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 import Modal from './Modal';
 import SingleAssetWithdrawForm from '../forms/productindepth/SingleAssetWithdrawForm';
 import MultiAssetWithdrawForm from '../forms/productindepth/MultiAssetWithdrawForm';
+import { randomUUID } from 'crypto';
 
-type withdrawData = {
-  tokenID: any;
-  slippage: number;
+type InputData = {
+  id: any;
+  address: string;
+  decimals: number;
   amount: number;
 };
 
-const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
-  const web3reactContext = useWeb3React();
+type WithdrawData = {
+  slippage: number;
+  from: InputData;
+  to: Array<InputData>;
+};
 
+const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
+  const web3reactContext = useWeb3React();
   const { width, height } = useWindowDimensions();
 
-  let multiAssetInitialValue: any = [];
+  const multiAssetInitialValue: any = [];
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('single');
 
-  const [singleAssetWithdraw, setSingleAssetWithdraw] = useState<withdrawData>({
-    tokenID: '',
-    slippage: 0.5,
-    amount: 123,
-  });
+  const [singleAssetWithdrawData, setSingleAssetWithdrawData] =
+    useState<WithdrawData>({
+      slippage: 0.5,
+      from: {
+        id: '',
+        address: '',
+        decimals: 0,
+        amount: 0,
+      },
+      to: [
+        {
+          id: '',
+          address: '',
+          decimals: 0,
+          amount: 0,
+        },
+      ],
+    });
 
-  const [max, setMax] = useState<boolean>(false);
-
-  const setMaxBalance = (token: any, balance: number): void => {};
+  // const setMaxBalance = (token: any, balance: number): void => {};
 
   // form input data
 
-  availableToken.forEach(
-    (token: any) =>
-      (multiAssetInitialValue = [
-        ...multiAssetInitialValue,
-        { tokenID: token.id, slippage: 0.5, amount: 0 },
-      ])
-  );
+  // availableToken.forEach(
+  //   (token: any) =>
+  //     (multiAssetInitialValue = [
+  //       ...multiAssetInitialValue,
+  //       { tokenID: token.id, slippage: 0.5, amount: 0 },
+  //     ])
+  // );
 
   const [multiAssetWithdraw, setMultiAssetWithdraw] = useState(
     multiAssetInitialValue
@@ -54,7 +72,7 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
 
   const handleWithdraw = (mode: string): void => {
     if (mode === 'single') {
-      console.log(singleAssetWithdraw);
+      console.log(singleAssetWithdrawData);
     }
     if (mode === 'multi') {
       console.log(multiAssetWithdraw);
@@ -62,8 +80,8 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
   };
 
   useEffect(() => {
-    if (singleAssetWithdraw.amount > 0) {
-    }
+    // if (singleAssetWithdrawData.to[0].amount > 0) {
+    // }
   }, []);
 
   return (
@@ -100,10 +118,9 @@ const WithdrawModal = ({ closeModal, availableToken, tokenName }: any) => {
           {activeTab === 'single' && (
             <SingleAssetWithdrawForm
               availableToken={availableToken}
-              singleAssetWithdraw={singleAssetWithdraw}
-              setSingleAssetWithdraw={setSingleAssetWithdraw}
-              tokenName={tokenName}
-              setMax={setMaxBalance}
+              singleAssetWithdraw={singleAssetWithdrawData}
+              setSingleAssetWithdraw={setSingleAssetWithdrawData}
+              vault={vault}
             />
           )}
 
