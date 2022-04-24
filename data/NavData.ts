@@ -15,12 +15,12 @@ export const navItems: Array<NavItem> = [
   {
     id: 2,
     name: 'Stake',
-    path: '/coming-soon',
+    path: '/stake',
   },
   {
     id: 3,
     name: 'Bond',
-    path: '/coming-soon',
+    path: '/bond',
   },
   {
     id: 4,
