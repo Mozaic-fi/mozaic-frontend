@@ -5,6 +5,7 @@ import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 
 export default function InputForm({
   form = 'withdraw',
+  formType = 'single',
   availableTokens,
   setFromDropdown = false,
   type = 'input',
@@ -13,8 +14,10 @@ export default function InputForm({
   setCurrentToken,
   vault,
   calculatedAmount,
+  onChange,
 }: {
   form?: string;
+  formType?: string;
   availableTokens?: object[];
   token?: any;
   setFromDropdown?: boolean;
@@ -26,6 +29,7 @@ export default function InputForm({
   vault?: any;
   value?: number;
   calculatedAmount?: number;
+  onChange?: Function;
 }) {
   const [showList, setShowList] = useState(false);
   const [amount, setAmount] = useState<any>(0);
@@ -55,6 +59,9 @@ export default function InputForm({
           id='amount'
           onChange={(e) => {
             setAmount(e.target.value);
+            if (onChange) {
+              onChange(e.target.value);
+            }
           }}
           readOnly={type === 'output'}
           value={type === 'input' ? amount : calculatedAmount}
@@ -70,20 +77,29 @@ export default function InputForm({
             </div>
           )}
 
-          {setFromDropdown ? (
-            <div className='dropdown'>
-              <DropdownWithIcons
-                options={availableTokens}
-                selectedOption={currentToken}
-                setOption={setCurrentToken}
-                handleOptionSelection={handleTokenSelection}
-                showList={showList}
-              />
+          {formType === 'multi' ? (
+            <div className='token-name-container'>
+              <p className='mr-1'>{currentToken.symbol}</p>
+              <img src={currentToken.icoSrc} alt='' />
             </div>
           ) : (
-            <div className='df-sb'>
-              <p className='tc-s ml-2 mr-2'>{vault.symbol}</p>
-            </div>
+            <>
+              {setFromDropdown ? (
+                <div className='dropdown'>
+                  <DropdownWithIcons
+                    options={availableTokens}
+                    selectedOption={currentToken}
+                    setOption={setCurrentToken}
+                    handleOptionSelection={handleTokenSelection}
+                    showList={showList}
+                  />
+                </div>
+              ) : (
+                <div className='df-sb'>
+                  <p className='tc-s ml-2 mr-2'>{vault.symbol}</p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -133,6 +149,14 @@ export default function InputForm({
           .max-btn.active {
             color: #ffbb00;
             background-color: #ffbb0010;
+          }
+
+          .token-name-container {
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            margin-right: 5px;
           }
         `}
       </style>

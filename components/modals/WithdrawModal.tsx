@@ -5,6 +5,7 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 import Modal from './Modal';
 import SingleAssetWithdrawForm from '../forms/productindepth/SingleAssetWithdrawForm';
 import MultiAssetWithdrawForm from '../forms/productindepth/MultiAssetWithdrawForm';
+import { v4 as uuidv4 } from 'uuid';
 
 type InputData = {
   id: any;
@@ -13,6 +14,8 @@ type InputData = {
   address: string;
   decimals: number;
   amount: number;
+  icoSrc?: string;
+  rateVault?: number;
 };
 
 type WithdrawData = {
@@ -25,8 +28,6 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
   const web3reactContext = useWeb3React();
   const { width, height } = useWindowDimensions();
 
-  const multiAssetInitialValue: any = [];
-
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('single');
 
@@ -35,10 +36,10 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
       slippage: 0.5,
       from: {
         id: '',
-        name: '',
-        symbol: '',
-        address: '',
-        decimals: 0,
+        name: vault.name,
+        symbol: vault.symbol,
+        address: vault.address,
+        decimals: vault.decimals,
         amount: 0,
       },
       to: [
@@ -49,25 +50,40 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
           address: '',
           decimals: 0,
           amount: 0,
+          icoSrc: '',
+          rateVault: 0,
         },
       ],
     });
 
-  // const setMaxBalance = (token: any, balance: number): void => {};
+  const initialMultiAssetWithdrawData: WithdrawData = {
+    slippage: 0.5,
+    from: {
+      id: '',
+      name: '',
+      symbol: '',
+      address: '',
+      decimals: 0,
+      amount: 0,
+    },
+    to: [],
+  };
 
-  // form input data
+  availableToken.forEach((token: any) => {
+    initialMultiAssetWithdrawData.to.push({
+      id: uuidv4(),
+      name: token.name,
+      symbol: token.symbol,
+      address: token.address,
+      decimals: token.decimals,
+      amount: 0,
+      icoSrc: token.icoSrc,
+      rateVault: token.rateVault,
+    });
+  });
 
-  // availableToken.forEach(
-  //   (token: any) =>
-  //     (multiAssetInitialValue = [
-  //       ...multiAssetInitialValue,
-  //       { tokenID: token.id, slippage: 0.5, amount: 0 },
-  //     ])
-  // );
-
-  const [multiAssetWithdraw, setMultiAssetWithdraw] = useState(
-    multiAssetInitialValue
-  );
+  const [multiAssetWithdrawData, setMultiAssetWithdrawData] =
+    useState<WithdrawData>(initialMultiAssetWithdrawData);
 
   // Tab
 
@@ -80,7 +96,7 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
       console.log(singleAssetWithdrawData);
     }
     if (mode === 'multi') {
-      console.log(multiAssetWithdraw);
+      console.log(multiAssetWithdrawData);
     }
   };
 
@@ -129,14 +145,14 @@ const WithdrawModal = ({ closeModal, availableToken, vault }: any) => {
             />
           )}
 
-          {/* {activeTab === 'multi' && (
+          {activeTab === 'multi' && (
             <MultiAssetWithdrawForm
               availableToken={availableToken}
-              multiAssetWithdraw={multiAssetWithdraw}
-              setMultiAssetWithdraw={setMultiAssetWithdraw}
-              tokenName={tokenName}
+              multiAssetWithdraw={multiAssetWithdrawData}
+              setMultiAssetWithdraw={setMultiAssetWithdrawData}
+              vault={vault}
             />
-          )} */}
+          )}
 
           {!web3reactContext.account ? (
             <button
