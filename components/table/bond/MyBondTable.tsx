@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import Separator from '../../commons/Separator';
 
-import Separator from '../../Separator';
-const AvailableBond = ({ items, claimBond }) => {
+const MyBondTable = ({
+  items,
+  claimBond,
+}: {
+  items?: any;
+  claimBond?: any;
+}) => {
   const { height, width } = useWindowDimensions();
 
   const [maxAllocation, setMaxAllocation] = useState(0);
@@ -19,18 +25,18 @@ const AvailableBond = ({ items, claimBond }) => {
       <table>
         {width > 500 ? (
           <colgroup>
-            <col span='1' style={{ width: 36 + '%' }}></col>
-            <col span='1' style={{ width: 18 + '%' }}></col>
-            <col span='1' style={{ width: 14 + '%' }}></col>
-            <col span='1' style={{ width: 14 + '%' }}></col>
-            <col span='1' style={{ width: 18 + '%' }}></col>
+            <col span={1} style={{ width: 36 + '%' }}></col>
+            <col span={1} style={{ width: 18 + '%' }}></col>
+            <col span={1} style={{ width: 14 + '%' }}></col>
+            <col span={1} style={{ width: 14 + '%' }}></col>
+            <col span={1} style={{ width: 18 + '%' }}></col>
           </colgroup>
         ) : (
           <colgroup>
-            <col span='1' style={{ width: 40 + '%' }}></col>
-            <col span='1' style={{ width: 20 + '%' }}></col>
-            <col span='1' style={{ width: 20 + '%' }}></col>
-            <col span='1' style={{ width: 20 + '%' }}></col>
+            <col span={1} style={{ width: 40 + '%' }}></col>
+            <col span={1} style={{ width: 20 + '%' }}></col>
+            <col span={1} style={{ width: 20 + '%' }}></col>
+            <col span={1} style={{ width: 20 + '%' }}></col>
           </colgroup>
         )}
 
@@ -85,7 +91,7 @@ const AvailableBond = ({ items, claimBond }) => {
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
+          {items.map((item: any) => (
             <tr key={item.id}>
               <td>
                 <div
@@ -94,7 +100,7 @@ const AvailableBond = ({ items, claimBond }) => {
                   }`}
                 >
                   {width > 650 &&
-                    item.icoSrc.map((ico, i) => (
+                    item.icoSrc.map((ico: any, i: any) => (
                       <img className='ico' key={i} src={ico} alt='' />
                     ))}
                   <p className='js-c'>{item.bondName}</p>
@@ -167,7 +173,7 @@ const AvailableBond = ({ items, claimBond }) => {
                     >
                       <img
                         className='mr-0'
-                        src='/assets/icons/ico.claim.svg'
+                        src='/assets/icons/bond/ico.claim.svg'
                         alt=''
                       />
                     </button>
@@ -178,16 +184,11 @@ const AvailableBond = ({ items, claimBond }) => {
           ))}
         </tbody>
       </table>
-      <Separator />
       <style jsx>
         {`
           table {
             width: 100%;
             border-collapse: collapse;
-          }
-
-          .table-body {
-            border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
           }
 
           .table-body .token-name {
@@ -198,6 +199,10 @@ const AvailableBond = ({ items, claimBond }) => {
           td,
           th {
             text-align: left;
+          }
+
+          tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           }
 
           .table-header {
@@ -262,4 +267,4 @@ const AvailableBond = ({ items, claimBond }) => {
   );
 };
 
-export default AvailableBond;
+export default MyBondTable;
