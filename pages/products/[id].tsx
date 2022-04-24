@@ -3,6 +3,7 @@ import Chart from '../../components/chart/Chart';
 import Card from '../../components/commons/card/Card';
 import CounterCardContent from '../../components/commons/card/CounterCardContent';
 import SelectOptions from '../../components/commons/SelectOptions';
+import DepositModal from '../../components/modals/DepositModal';
 import WithdrawModal from '../../components/modals/WithdrawModal';
 import CompactTable from '../../components/table/CompactTable';
 import MatrixTable from '../../components/table/MatrixTable';
@@ -121,13 +122,13 @@ const Product = () => {
                 <button onClick={() => handleWD(0)} className='btn-left'>
                   Deposit
                 </button>
-                {/* {isOpenDM && (
+                {isOpenDM && (
                   <DepositModal
-                  closeModal={setIsOpenDM}
-                  availableToken={productData.tokens}
-                  tokenName={productData.tokenName}
+                    closeModal={setIsOpenDM}
+                    availableToken={productData.tokens}
+                    vault={productData.vault}
                   />
-                )} */}
+                )}
                 <button onClick={() => handleWD(1)} className='btn-right'>
                   Withdraw
                 </button>
