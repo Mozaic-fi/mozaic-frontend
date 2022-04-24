@@ -1,14 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Card from '../components/products/Card';
-import styles from '../styles/Home.module.css';
 
 import { products as productData, Product } from '../data/HomeData';
 import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [products, setProducts] = useState<Product | null>(null);
 
   useEffect(() => {
     setProducts(productData);
