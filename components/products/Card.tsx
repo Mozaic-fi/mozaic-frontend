@@ -14,7 +14,7 @@ const Card = ({
   priceChange,
   currency,
   tokens,
-}: Product) => {
+}: Product | any) => {
   const productHandler = () => {
     console.log('Going to product ', id);
   };
@@ -37,7 +37,7 @@ const Card = ({
           <div className='card-body'>
             <div className='card-body-container'>
               <div className='token-ico-container df-c mb-2'>
-                {tokens.map((token) => (
+                {tokens.map((token: any) => (
                   <img
                     className='token-ico mr-1'
                     key={token.id}

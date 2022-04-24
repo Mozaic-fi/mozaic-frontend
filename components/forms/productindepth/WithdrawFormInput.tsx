@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import useBalance from '../../../hooks/useBalance';
 import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 
-export default function InputForm({
+export default function WithdrawFormInput({
+  index,
   form = 'withdraw',
   formType = 'single',
   availableTokens,
@@ -16,6 +17,7 @@ export default function InputForm({
   calculatedAmount,
   onChange,
 }: {
+  index?: number;
   form?: string;
   formType?: string;
   availableTokens?: object[];
@@ -59,7 +61,7 @@ export default function InputForm({
           id='amount'
           onChange={(e) => {
             setAmount(e.target.value);
-            if (onChange) {
+            if (onChange && index === undefined) {
               onChange(e.target.value);
             }
           }}
@@ -71,7 +73,12 @@ export default function InputForm({
           {type === 'input' && (
             <div
               className={`max-btn mr-1 ${amount === maxBalance && 'active'}`}
-              onClick={() => setAmount(maxBalance)}
+              onClick={() => {
+                setAmount(maxBalance);
+                if (onChange) {
+                  onChange(maxBalance);
+                }
+              }}
             >
               Max
             </div>
