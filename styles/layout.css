@@ -289,7 +289,7 @@
   flex-direction: row;
 }
 
-.ft-c {
+.fd-c {
   flex-direction: column;
 }
 
@@ -299,6 +299,24 @@
 
 .ai-c {
   align-items: center;
+}
+
+.jc-e {
+  justify-items: flex-end;
+  justify-content: end;
+}
+
+.ai-e {
+  align-items: end;
+}
+
+.jc-s {
+  justify-items: flex-start;
+  justify-content: start;
+}
+
+.ai-s {
+  align-items: start;
 }
 
 /* text align */
