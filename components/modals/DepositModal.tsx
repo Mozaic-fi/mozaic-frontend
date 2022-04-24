@@ -1,54 +1,109 @@
-import Modal from './Modal';
 import { useState, useEffect } from 'react';
-import DropdownWithIcons from '../dropdown/DropdownWithIcons';
+import { useWeb3React } from '@web3-react/core';
 import ConnectWalletModal from './ConnectWalletModal';
-import useAuth from '../../../hooks/useAuth';
-import SingleAssetDepositForm from '../../forms/productindepth/SingleAssetDepositForm';
-import MultiAssetDepositForm from '../../forms/productindepth/MultiAssetDepositForm';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import Modal from './Modal';
+import { v4 as uuidv4 } from 'uuid';
+import SingleAssetDepositForm from '../forms/productindepth/SingleAssetDepositForm';
+import MultiAssetDepositForm from '../forms/productindepth/MultiAssetDepositForm';
 
-const DepositModal = ({ closeModal, availableToken, tokenName }: any) => {
-  const { walletConnected } = useAuth();
+type InputData = {
+  id: any;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+  amount: number;
+  icoSrc?: string;
+  rateVault?: number;
+};
+
+type DepositData = {
+  slippage: number;
+  from: Array<InputData>;
+  to: InputData;
+};
+
+const DepositModal = ({ closeModal, availableToken, vault }: any) => {
+  const web3reactContext = useWeb3React();
   const { width, height } = useWindowDimensions();
 
-  const multiAssetInitialValue = [];
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('single');
-  const [singleAssetDeposit, setSingleAssetDeposit] = useState({
-    tokenID: '',
-    slippage: '0.5',
-    amount: '',
-    isMax: false,
-    isApprove: false,
-    isInfinityApprove: false,
+
+  const [singleAssetDepositData, setSingleAssetDepositData] =
+    useState<DepositData>({
+      slippage: 0.5,
+      from: [
+        {
+          id: '',
+          name: '',
+          symbol: '',
+          address: '',
+          decimals: 0,
+          amount: 0,
+          icoSrc: '',
+          rateVault: 0,
+        },
+      ],
+      to: {
+        id: '',
+        name: vault.name,
+        symbol: vault.symbol,
+        address: vault.address,
+        decimals: vault.decimals,
+        amount: 0,
+      },
+    });
+
+  const initialMultiAssetDepositData: DepositData = {
+    slippage: 0.5,
+    to: {
+      id: '',
+      name: '',
+      symbol: '',
+      address: '',
+      decimals: 0,
+      amount: 0,
+    },
+    from: [],
+  };
+
+  availableToken.forEach((token: any) => {
+    initialMultiAssetDepositData.from.push({
+      id: uuidv4(),
+      name: token.name,
+      symbol: token.symbol,
+      address: token.address,
+      decimals: token.decimals,
+      amount: 0,
+      icoSrc: token.icoSrc,
+      rateVault: token.rateVault,
+    });
   });
 
-  const [calculatedAmount, setCalculatedAmount] = useState(0.0);
+  const [multiAssetDepositData, setMultiAssetDepositData] =
+    useState<DepositData>(initialMultiAssetDepositData);
 
-  availableToken.forEach(
-    (token) =>
-      (multiAssetInitialValue = [
-        ...multiAssetInitialValue,
-        { tokenID: token.id, slippage: 0.5, amount: 0, isMax: false },
-      ])
-  );
-  const [multiAssetDeposit, setMultiAssetDeposit] = useState(
-    multiAssetInitialValue
-  );
+  // Tab
 
-  const handleTab = (tabName) => setActiveTab(tabName);
-  const handleDeposit = (mode) => {
+  const handleTab = (tabName: string): void => setActiveTab(tabName);
+
+  // Deposit fund
+
+  const handleDeposit = (mode: string): void => {
     if (mode === 'single') {
-      console.log(singleAssetDeposit);
+      console.log(singleAssetDepositData);
     }
     if (mode === 'multi') {
-      console.log(multiAssetDeposit);
+      console.log(multiAssetDepositData);
     }
   };
 
-  const calculateAmount = () => {
-    setCalculatedAmount(amount++);
-  };
+  useEffect(() => {
+    // if (singleAssetDepositData.to[0].amount > 0) {
+    // }
+  }, []);
 
   return (
     <>
@@ -58,40 +113,48 @@ const DepositModal = ({ closeModal, availableToken, tokenName }: any) => {
         w={width > 770 ? '770px' : '100%'}
       >
         <>
-          <div className='tab-container'>
+          {/* tab */}
+
+          <div className='tab-container mb-5'>
             <div
               onClick={() => handleTab('single')}
-              className={`tab-selector ${activeTab === 'single' && 'active'}`}
+              className={`tab-selector left ${
+                activeTab === 'single' && 'active'
+              }`}
             >
               Single Asset
             </div>
             <div
               onClick={() => handleTab('multi')}
-              className={`tab-selector ${activeTab === 'multi' && 'active'}`}
+              className={`tab-selector right ${
+                activeTab === 'multi' && 'active'
+              }`}
             >
               Multi Asset
             </div>
           </div>
-          <div className='space-s'></div>
+
+          {/* form */}
+
           {activeTab === 'single' && (
             <SingleAssetDepositForm
               availableToken={availableToken}
-              singleAssetDeposit={singleAssetDeposit}
-              setSingleAssetDeposit={setSingleAssetDeposit}
-              tokenName={tokenName}
+              singleAssetDeposit={singleAssetDepositData}
+              setSingleAssetDeposit={setSingleAssetDepositData}
+              vault={vault}
             />
           )}
 
           {activeTab === 'multi' && (
             <MultiAssetDepositForm
               availableToken={availableToken}
-              multiAssetDeposit={multiAssetDeposit}
-              setMultiAssetDeposit={setMultiAssetDeposit}
-              tokenName={tokenName}
+              multiAssetDeposit={multiAssetDepositData}
+              setMultiAssetDeposit={setMultiAssetDepositData}
+              vault={vault}
             />
           )}
 
-          {!walletConnected ? (
+          {!web3reactContext.account ? (
             <button
               onClick={() => setIsOpen(!isOpen)}
               className='btn-primary w-100'
@@ -110,13 +173,14 @@ const DepositModal = ({ closeModal, availableToken, tokenName }: any) => {
         </>
       </Modal>
 
-      <style jsx>
+      <style jsx global>
         {`
           .tab-container {
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--textSecondary50);
             display: flex;
-            height: 40px;
+            height: 50px;
+            border-radius: 30px;
           }
 
           .tab-selector {
@@ -126,12 +190,24 @@ const DepositModal = ({ closeModal, availableToken, tokenName }: any) => {
             align-items: center;
             justify-content: center;
             cursor: pointer;
-          }
+            color: var(--textSecondary);
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
 
-          .tab-selector.active {
-            background-color: #ffbb00;
-            color: #25212b;
-            font-weight: bold;
+            &.left {
+              border-radius: 30px 0 0 30px;
+            }
+
+            &.right {
+              border-radius: 0 30px 30px 0;
+            }
+
+            &.active {
+              background-color: var(--primaryColor);
+              color: #25212b;
+              font-weight: bold;
+              font-size: 1rem;
+            }
           }
         `}
       </style>

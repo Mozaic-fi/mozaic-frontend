@@ -1,49 +1,46 @@
-import { useState, useEffect } from 'react';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import React, { useState, useEffect } from 'react';
 import ValueEditorModal from '../../modals/ValueEditorModal';
-import WithdrawFormInput from './WithdrawFormInput';
+import DepositFromInput from './DepositFormInput';
 
-const SingleAssetWithdrawForm = ({
+const MultiAssetDepositForm = ({
   availableToken,
-  singleAssetWithdraw,
-  setSingleAssetWithdraw,
+  multiAssetDeposit,
+  setMultiAssetDeposit,
   vault,
 }: any) => {
   const { width, height } = useWindowDimensions();
   const [isValueEditor, setValueEditor] = useState<boolean>(false);
-  const [currentToken, setCurrentToken] = useState(availableToken[0]);
   const [calculatedAmount, setCalculatedAmount] = useState<any>(0);
-
-  // calculate amount for withdrawal
-
-  const calculateAmount = (amount: number, rate: number) => {
-    const calculatedAmount = amount * rate;
-    setCalculatedAmount(calculatedAmount);
-  };
-
-  // set slippage value
-
-  const setSlippage = (value: number) => {
-    setSingleAssetWithdraw({ ...singleAssetWithdraw, slippage: value });
-  };
 
   const [to, setTo] = useState<any>();
   const [from, setFrom] = useState<any>();
 
-  const setSingleAssetWithdrawData = (to: any, from: any) => {
-    setSingleAssetWithdraw({ ...singleAssetWithdraw, from: from, to: [to] });
+  const setSlippage = (value: number) => {
+    setMultiAssetDeposit({ ...multiAssetDeposit, slippage: value });
+  };
+
+  const setMultiAssetDepositData = (to: any) => {
+    setMultiAssetDeposit({ ...multiAssetDeposit, to: to });
+  };
+
+  const onChange = (i: number, value: any): any => {
+    let data: any = [];
+    data[i] = value * multiAssetDeposit.from[i].rateVault;
+    let sum = 0;
+    for (let i = 0; i < data.length; i++) {
+      sum = sum + parseFloat(data[i]);
+    }
+    setCalculatedAmount(sum);
   };
 
   useEffect(() => {
-    setSingleAssetWithdrawData(to, from);
-    if (from) {
-      calculateAmount(from.amount, currentToken.rateVault);
-    }
+    setMultiAssetDepositData(to);
   }, [to, from]);
 
   return (
     <>
-      <div className='withdraw mb-2'>
+      <div className='Deposit mb-2'>
         <p className='fs-s tc-s mb-2'>
           Remove liquidity in one transaction. Your {vault.symbol} will
           automatically swap to one of the underlying pool token.
@@ -62,7 +59,7 @@ const SingleAssetWithdrawForm = ({
               onClick={() => setValueEditor(!isValueEditor)}
               className='slippage max-btn df-c ml-1 hlt'
             >
-              <p className='fs-xs tc-p mr-1'>{singleAssetWithdraw.slippage}%</p>
+              <p className='fs-xs tc-p mr-1'>{multiAssetDeposit.slippage}%</p>
               <img src='/assets/icons/ico.edit.svg'></img>
             </div>
 
@@ -70,7 +67,7 @@ const SingleAssetWithdrawForm = ({
               <ValueEditorModal
                 title='Set Slippage Value'
                 closeModal={setValueEditor}
-                value={singleAssetWithdraw.slippage}
+                value={multiAssetDeposit.slippage}
                 setValue={setSlippage}
               />
             )}
@@ -78,13 +75,22 @@ const SingleAssetWithdrawForm = ({
             {/* Slippage */}
           </div>
         </div>
-
-        <WithdrawFormInput
-          type='input'
-          availableTokens={availableToken}
-          vault={vault}
-          setData={setFrom}
-        />
+        <div className='multi-token-container'>
+          {multiAssetDeposit.from.map((token: any, i: number) => (
+            <React.Fragment key={token.address}>
+              <DepositFromInput
+                index={i}
+                form='deposit'
+                formType='multi'
+                type='input'
+                currentToken={token}
+                vault={vault}
+                setData={setFrom}
+                onChange={onChange}
+              />
+            </React.Fragment>
+          ))}
+        </div>
 
         <div className='df-sb mt-1 mb-1'>
           <p className='fs-s tc-s'>
@@ -94,29 +100,28 @@ const SingleAssetWithdrawForm = ({
 
         <div className='df-sb label mb-1'>
           <label className='fs-s t-b' htmlFor={vault.symbol}>
-            {currentToken.symbol} Amount
+            {`You'll Get`}
           </label>
         </div>
-        <WithdrawFormInput
-          availableTokens={availableToken}
-          type={'output'}
-          vault={vault}
-          setFromDropdown={true}
-          setData={setTo}
-          currentToken={currentToken}
-          setCurrentToken={setCurrentToken}
-          calculatedAmount={calculatedAmount}
-        />
-        <div className='df-sb mt-1'>
+        <div className='multi-token-container'>
+          <DepositFromInput
+            form='deposit'
+            type='output'
+            vault={vault}
+            setData={setTo}
+            calculatedAmount={calculatedAmount}
+            //   onChange={calculateAmount}
+          />
+        </div>
+        {/* <div className='df-sb mt-1'>
           <p className='fs-s tc-s'>
             1 {currentToken.symbol} = ${currentToken.rateUSD}
           </p>
           <p className='fs-s tc-s'>
             1 {currentToken.symbol} = {currentToken.rateVault} {vault.symbol}
           </p>
-        </div>
+        </div> */}
       </div>
-
       <style jsx global>
         {`
           input {
@@ -151,6 +156,7 @@ const SingleAssetWithdrawForm = ({
 
           .multi-token-container {
             display: flex;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: flex-start;
@@ -202,4 +208,4 @@ const SingleAssetWithdrawForm = ({
   );
 };
 
-export default SingleAssetWithdrawForm;
+export default MultiAssetDepositForm;
