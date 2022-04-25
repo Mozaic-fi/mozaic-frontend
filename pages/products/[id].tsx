@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useState, useEffect, SyntheticEvent } from 'react';
 import Chart from '../../components/chart/Chart';
 import Card from '../../components/commons/card/Card';
@@ -73,6 +74,10 @@ const Product = () => {
 
   return (
     <>
+      <Head>
+        <title>Mozaic - {productData.name}</title>
+        <meta name='description' content='Mozaic dapp' />
+      </Head>
       {currentDataStream && (
         <>
           <div className='container header-container'>

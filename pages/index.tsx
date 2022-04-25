@@ -17,7 +17,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Mozaic - Products</title>
         <meta name='description' content='Mozaic dapp' />
-        <link rel='icon' href='/favicon.png' />
       </Head>
       <div className='container'>
         <div className='page-title'>

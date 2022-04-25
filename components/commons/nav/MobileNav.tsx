@@ -29,12 +29,12 @@ const MobileNav = () => {
         <div className='menu-container'>
           {menuItems.map((item) => (
             <Link key={item.id} href={item.path}>
-              <div className='menu-items bg-s'>
+              <a target={'_blank'} className='menu-items bg-s'>
                 <div className='iconholder-menu'>
                   <img src={item.icoSrc} alt='' />
                 </div>
                 <p>{item.name}</p>
-              </div>
+              </a>
             </Link>
           ))}
         </div>

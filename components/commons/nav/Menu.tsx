@@ -8,12 +8,12 @@ const Menu = () => {
       <div className='menu-container bg-card-primary glow blur-2'>
         {menuItems.map((item) => (
           <Link key={item.id} href={item.path}>
-            <div className='menu-items'>
+            <a target={'_blank'} className='menu-items'>
               <div className='iconholder-menu'>
                 <img src={item.icoSrc} alt='' />
               </div>
               <p>{item.name}</p>
-            </div>
+            </a>
           </Link>
         ))}
       </div>

@@ -52,6 +52,10 @@ const Layout = ({ children }: Props) => {
             margin-top: 96px;
             padding-bottom: 64px;
           }
+
+          .bg-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+          }
         `}
       </style>
     </>

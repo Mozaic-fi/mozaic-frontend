@@ -5,7 +5,12 @@ import MyBondTable from '../../components/table/bond/MyBondTable';
 import { availableBonds, bondInfo, myBond } from '../../data/BondData';
 import BondModal from '../../components/modals/BondModal';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import Head from 'next/head';
+import { useWeb3React } from '@web3-react/core';
+
 const Bond = () => {
+  const web3reactContext = useWeb3React();
+
   const { height, width } = useWindowDimensions();
   const [openBondModal, setOpenBondModal] = useState(false);
   const [bondData, setBondData] = useState({});
@@ -17,6 +22,11 @@ const Bond = () => {
 
   return (
     <>
+      <Head>
+        <title>Mozaic - Bond</title>
+        <meta name='description' content='Mozaic dapp' />
+      </Head>
+
       <div className='container bond-header'>
         <div className='page-title w-100 df-sb'>
           <div className='flex-1 df'>
@@ -54,18 +64,22 @@ const Bond = () => {
         </div>
       </div>
       <div className='container'>
-        {myBond && (
+        {web3reactContext.account && (
           <>
-            <div className='page-title '>
-              <h2 className='tc-s'>my bonds</h2>
-            </div>
-            <div className=''>
-              <MyBondTable items={myBond} />
-            </div>
+            {myBond && (
+              <>
+                <div className='page-title '>
+                  <h2 className='tc-s fs-xl fw-r ta-c w-100'>My Bonds</h2>
+                </div>
+                <div className=''>
+                  <MyBondTable items={myBond} />
+                </div>
+              </>
+            )}
           </>
         )}
         <div className='page-title '>
-          <h2 className='tc-s'>available bonds</h2>
+          <h2 className='tc-s fs-xl fw-r ta-c w-100'>Available Bonds</h2>
         </div>
         <div className=''>
           <AvailableBondTable items={availableBonds} openBond={openBond} />
@@ -89,9 +103,15 @@ const Bond = () => {
               description='To receive a below market rate swap, find your desired Bond with a positive discount rate.'
             />
           </div>
-          <button style={{ width: 200 + 'px' }} className='btn-primary mb-5'>
+          <a
+            rel='noreferrer'
+            style={{ width: 200 + 'px' }}
+            className='btn-primary mb-5 df-c'
+            target='_blank'
+            href='https://docs.mozaic.finance/mozaic-protocol-1/bonding '
+          >
             READ THE DOCS
-          </button>
+          </a>
         </div>
         {openBondModal && (
           <BondModal closeModal={setOpenBondModal} bond={bondData} />
@@ -104,6 +124,11 @@ const Bond = () => {
             height: 70px;
             margin-top: auto;
             margin-bottom: auto;
+          }
+
+          .pt-t {
+            margin: 0;
+            margin-left: 20px;
           }
 
           .summary-container {
