@@ -56,7 +56,7 @@ export const infoData = {
   totalVeMoz: 321131312.21,
   averageLockTime: 3.64,
   nextDistribution: 'Thu, 20 Feb 2022, 14:43:59 GMT',
-  tlv: 121232122.32,
+  tvl: 121232122.32,
 };
 
 export const weeks = [

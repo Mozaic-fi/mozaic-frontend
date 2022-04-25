@@ -54,8 +54,11 @@ const Stake = () => {
               </div>
             </div>
             <div className='mb-5 '>
-              <Link href='/staking-moz-guide'>
-                <a className='df-c fs-s tc-h link-container-right'>
+              <Link href='https://docs.mozaic.finance/mozaic-protocol-1/understanding-vemoz'>
+                <a
+                  target={'_blank'}
+                  className='df-c fs-s tc-h link link-container-right'
+                >
                   Guide to staking MOZ
                   <img
                     className='ml-1'
@@ -83,8 +86,8 @@ const Stake = () => {
                 <p className='tc-h fw-b data'>{infoData.nextDistribution}</p>
               </div>
               <div className='df-sb mb-2'>
-                <p className='tc-s'>TLV:</p>
-                <p className='tc-h fw-b data'>${infoData.tlv}</p>
+                <p className='tc-s'>TVL:</p>
+                <p className='tc-h fw-b data'>${infoData.tvl}</p>
               </div>
             </div>
           </div>

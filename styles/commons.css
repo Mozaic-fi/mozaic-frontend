@@ -78,6 +78,10 @@
 
 /* text */
 
+.link {
+  text-decoration: underline;
+}
+
 .pt-t {
   margin-top: 24px;
   margin-left: 36px;
