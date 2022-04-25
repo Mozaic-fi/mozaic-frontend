@@ -26,8 +26,8 @@ const Stake = () => {
   return (
     <>
       <div className='container'>
-        <div className='page-title '>
-          <h1 className='tc-s'>Stake</h1>
+        <div className='page-title'>
+          <h1 className='pt-t ml-a mr-a'>Stake</h1>
         </div>
         <div className='log-display mb-5'>
           {logData.map((log) => (

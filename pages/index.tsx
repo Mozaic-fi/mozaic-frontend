@@ -15,13 +15,13 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Mozaic</title>
+        <title>Mozaic - Products</title>
         <meta name='description' content='Mozaic dapp' />
         <link rel='icon' href='/favicon.png' />
       </Head>
       <div className='container'>
         <div className='page-title'>
-          <h1 className='pt-t'>Products</h1>
+          <h1 className='pt-t ml-a mr-a'>Products</h1>
         </div>
 
         <div className='card-container'>

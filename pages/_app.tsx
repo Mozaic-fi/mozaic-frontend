@@ -21,6 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <title>Mozaic</title>
+        <meta name='description' content='Mozaic dapp' />
+        <link rel='icon' href='/favicon.png' />
+      </Head>
       <NotificationProvider>
         <Web3ReactProvider getLibrary={getLibrary}>
           <AuthProvider>

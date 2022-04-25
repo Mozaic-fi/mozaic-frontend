@@ -17,19 +17,23 @@ const Bond = () => {
 
   return (
     <>
-      {/* <div className='prod-header'>
-        <div className='container product-in-depth'>
-          <div className='product-title'>
-            <img src='/assets/icons/bond/ico.bondBadge.svg' alt='' />
-            <h1>Bond</h1>
+      <div className='container bond-header'>
+        <div className='page-title w-100 df-sb'>
+          <div className='flex-1 df'>
+            <img
+              className='title-icon'
+              src='/assets/icons/bond/ico.bondBadge.svg'
+              alt=''
+            />
+            <h1 className='pt-t'>Bond</h1>
           </div>
           <div
-            className={`info-container-bond ${
-              width > 480 ? 'df-sb' : 'df ai-c js-c fd-c'
+            className={`summary-container bg-w20 flex-1 blur-bg-1 pt-5 pb-5 pr-5 pl-5 rounded ${
+              width > 860 ? 'df-sb' : 'df ai-c js-c fd-c'
             }`}
           >
-            <div className={`${width > 480 ? 'df-ra' : 'df-ca'}`}>
-              <p style={{ display: 'flex' }} className='t-b'>
+            <div className={`${width > 860 ? 'df-ra' : 'df-ca'}`}>
+              <p style={{ display: 'flex' }} className='fw-b'>
                 Treasury Balance &nbsp;{' '}
                 <span>
                   <img
@@ -40,22 +44,20 @@ const Bond = () => {
                   />
                 </span>{' '}
               </p>
-              <h1 className='num-display ff-1 tc-p'>
-                ${bondInfo.treasuryBalance}
-              </h1>
+              <h1 className='fs-xxl fw-b tc-h'>${bondInfo.treasuryBalance}</h1>
             </div>
-            <div className={`${width > 480 ? 'df-la' : 'df-ca'}`}>
-              <p className='t-b'>MOZ Price</p>
-              <h1 className='num-display ff-1 tc-p'>${bondInfo.mozPrice}</h1>
+            <div className={`${width > 860 ? 'df-la' : 'df-ca'}`}>
+              <p className='fw-b'>MOZ Price</p>
+              <h1 className='fs-xxl fw-b tc-h'>${bondInfo.mozPrice}</h1>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className='container'>
         {myBond && (
           <>
             <div className='page-title '>
-              <h1 className='tc-s'>my bonds</h1>
+              <h2 className='tc-s'>my bonds</h2>
             </div>
             <div className=''>
               <MyBondTable items={myBond} />
@@ -63,13 +65,13 @@ const Bond = () => {
           </>
         )}
         <div className='page-title '>
-          <h1 className='tc-s'>available bonds</h1>
+          <h2 className='tc-s'>available bonds</h2>
         </div>
         <div className=''>
           <AvailableBondTable items={availableBonds} openBond={openBond} />
         </div>
-        <div className='bg-p mt-5 rounded w-100 df fd-c jc-c ai-c'>
-          <div className={`df ${width < 768 && 'fd-c'}`}>
+        <div className='bg-p mt-5 p-t5 rounded w-100 df fd-c jc-c ai-c'>
+          <div className={`df jc-c ai-s ${width < 768 && 'fd-c'}`}>
             <CardContent
               title='exchange your lp'
               icoSrc={availableBonds[1].icoSrc}
@@ -98,46 +100,29 @@ const Bond = () => {
 
       <style jsx>
         {`
-          .prod-header {
-            display: flex;
-          }
-          .prod-header .container {
-            height: 160px;
-            width: 1170px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-          }
-          .prod-header .product-title {
-            display: flex;
-            align-items: center;
+          .title-icon {
+            height: 70px;
+            margin-top: auto;
+            margin-bottom: auto;
           }
 
-          .prod-header .product-title img {
-            height: 60px;
-            margin-right: 30px;
-          }
-
-          .prod-header .product-title h1 {
-            font-size: 3.75rem;
-            font-weight: 200;
-            color: var(--textSecondary);
-            opacity: 0.4;
-          }
-
-          .info-container-bond {
+          .summary-container {
             box-sizing: border-box;
-            padding: 4px;
-            width: ${width > 768 ? '50%' : '100%'};
+            padding: 48px;
+            width: ${width > 720 ? '50%' : '100%'};
             height: max-content;
             border-radius: 55px;
           }
 
-          .num-display {
-            font-size: 2.8rem;
+          @media screen and (max-width: 720px) {
+            .page-title {
+              flex-direction: column !important;
+              gap: 30px;
+            }
+
+            .product-title {
+              margin-bottom: 60px;
+            }
           }
         `}
       </style>

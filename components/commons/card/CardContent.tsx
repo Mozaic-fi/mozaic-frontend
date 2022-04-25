@@ -29,7 +29,12 @@ export default function CardContent({
           {icoText && <h3 className='ml-2'>{icoText}</h3>}
         </div>
         <div>
-          <h2 className={`${titleClass} ta-c mb-1`}>{title}</h2>
+          <h2
+            className={`${titleClass} ta-c mb-1`}
+            style={{ textTransform: 'capitalize' }}
+          >
+            {title}
+          </h2>
           <p className={`tc-s ta-c fs-xs`}>{description}</p>
         </div>
       </div>
