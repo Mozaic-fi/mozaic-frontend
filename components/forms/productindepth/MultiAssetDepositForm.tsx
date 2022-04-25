@@ -17,19 +17,24 @@ const MultiAssetDepositForm = ({
   const [to, setTo] = useState<any>();
   const [from, setFrom] = useState<any>([]);
 
+  const setMultiAssetDepositData = (to: any) => {
+    setMultiAssetDeposit({ ...multiAssetDeposit, to: to });
+  };
+
+  // for generating slippage amount from multiple assets
+
   const setSlippage = (value: number) => {
     setMultiAssetDeposit({ ...multiAssetDeposit, slippage: value });
   };
 
-  const setMultiAssetDepositData = (to: any) => {
-    setMultiAssetDeposit({ ...multiAssetDeposit, to: to });
-  };
+  // for generating withdraw amount from multiple assets
 
   const onChange = (i: number, value: any): any => {
     data[i] = value * multiAssetDeposit.from[i].rateVault;
     let sum = 0;
     for (let i = 0; i < data.length; i++) {
-      sum = sum + parseFloat(data[i]);
+      sum = sum + (data[i] ? parseFloat(data[i]) : 0);
+      console.log(i, data[i]);
     }
     setCalculatedAmount(sum);
     setMultiAssetDeposit({ ...multiAssetDeposit, from: from });
@@ -43,8 +48,8 @@ const MultiAssetDepositForm = ({
     <>
       <div className='Deposit mb-2'>
         <p className='fs-s tc-s mb-2'>
-          Remove liquidity in one transaction. Your {vault.symbol} will
-          automatically swap to one of the underlying pool token.
+          Remove liquidity in one transaction. Your tokens will automatically
+          swap to one of the underlying pool token.
         </p>
 
         <div className='df-sb label mb-1'>
@@ -109,7 +114,6 @@ const MultiAssetDepositForm = ({
             vault={vault}
             setData={setTo}
             calculatedAmount={calculatedAmount}
-            //   onChange={calculateAmount}
           />
         </div>
         {/* <div className='df-sb mt-1'>
@@ -177,21 +181,6 @@ const MultiAssetDepositForm = ({
           .token-name-container {
             width: 100px;
             justify-content: ${width > 480 ? 'start' : 'end'};
-          }
-
-          .max-btn {
-            height: 60%;
-            padding-left: 8px;
-            padding-right: 8px;
-            color: rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            cursor: pointer;
-          }
-
-          .max-btn.active {
-            color: #ffbb00;
-            background-color: #ffbb0010;
           }
 
           .slippage {

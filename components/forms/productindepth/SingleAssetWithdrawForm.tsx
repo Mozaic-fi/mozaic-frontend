@@ -174,21 +174,6 @@ const SingleAssetWithdrawForm = ({
             justify-content: ${width > 480 ? 'start' : 'end'};
           }
 
-          .max-btn {
-            height: 60%;
-            padding-left: 8px;
-            padding-right: 8px;
-            color: rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            cursor: pointer;
-          }
-
-          .max-btn.active {
-            color: #ffbb00;
-            background-color: #ffbb0010;
-          }
-
           .slippage {
             cursor: pointer;
           }
