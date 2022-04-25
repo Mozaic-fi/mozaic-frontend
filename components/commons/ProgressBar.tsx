@@ -34,7 +34,7 @@ const ProgressBar = ({
         {`
           .pb-bg {
             position: relative;
-            background-color: #efefef;
+            background-color: #efefef40;
             height: 3px;
             width: 100%;
             border-radius: 3px;

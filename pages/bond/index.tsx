@@ -2,60 +2,13 @@ import { useState } from 'react';
 import CardContent from '../../components/commons/card/CardContent';
 import AvailableBondTable from '../../components/table/bond/AvailableBondTable';
 import MyBondTable from '../../components/table/bond/MyBondTable';
-// import BondModal from '../../components/modals/BondModal';
+import { availableBonds, bondInfo, myBond } from '../../data/BondData';
+import BondModal from '../../components/modals/BondModal';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
-
 const Bond = () => {
   const { height, width } = useWindowDimensions();
   const [openBondModal, setOpenBondModal] = useState(false);
   const [bondData, setBondData] = useState({});
-  const userData = {};
-
-  const availableBonds = [
-    {
-      id: 1,
-      bondName: 'USDC',
-      icoSrc: ['/assets/icons/tokens/ico.token.usdc.svg'],
-      price: 182.2,
-      marketPrice: 164.7,
-      roi: 0.25,
-      tbv: 122324.3,
-    },
-    {
-      id: 2,
-      bondName: 'MOZ-AVAX LP',
-      icoSrc: [
-        '/assets/icons/tokens/ico.token.moz.svg',
-        '/assets/icons/tokens/ico.token.avax.svg',
-      ],
-      price: 165.8,
-      marketPrice: 164.7,
-      roi: -0.17,
-      tbv: 43234.5,
-    },
-  ];
-
-  const myBond = [
-    {
-      id: 1,
-      bondName: 'USDC',
-      icoSrc: ['/assets/icons/tokens/ico.token.usdc.svg'],
-      claimable: 0.0,
-      pending: 22.4324,
-      vestingTime: 3,
-    },
-    {
-      id: 2,
-      bondName: 'MOZ-AVAX LP',
-      icoSrc: [
-        '/assets/icons/tokens/ico.token.moz.svg',
-        '/assets/icons/tokens/ico.token.avax.svg',
-      ],
-      claimable: 21.532,
-      pending: 1.2342,
-      vestingTime: 87,
-    },
-  ];
 
   const openBond = (id: any) => {
     setBondData(availableBonds.filter((bond) => bond.id === id)[0]);
@@ -64,7 +17,7 @@ const Bond = () => {
 
   return (
     <>
-      <div className='prod-header'>
+      {/* <div className='prod-header'>
         <div className='container product-in-depth'>
           <div className='product-title'>
             <img src='/assets/icons/bond/ico.bondBadge.svg' alt='' />
@@ -87,15 +40,17 @@ const Bond = () => {
                   />
                 </span>{' '}
               </p>
-              <h1 className='num-display ff-1 tc-p'>$123152312.37</h1>
+              <h1 className='num-display ff-1 tc-p'>
+                ${bondInfo.treasuryBalance}
+              </h1>
             </div>
             <div className={`${width > 480 ? 'df-la' : 'df-ca'}`}>
               <p className='t-b'>MOZ Price</p>
-              <h1 className='num-display ff-1 tc-p'>$213.95</h1>
+              <h1 className='num-display ff-1 tc-p'>${bondInfo.mozPrice}</h1>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className='container'>
         {myBond && (
           <>
@@ -122,7 +77,7 @@ const Bond = () => {
             />
             <CardContent
               title='linear vesting'
-              icoSrc='/assets/icons/ico.time.svg'
+              icoSrc='/assets/icons/bond/ico.time.svg'
               description='Once you receive a  Bond, you are able to vest at any time within the vesting period.'
             />
             <CardContent
@@ -136,9 +91,9 @@ const Bond = () => {
             READ THE DOCS
           </button>
         </div>
-        {/* {openBondModal && (
+        {openBondModal && (
           <BondModal closeModal={setOpenBondModal} bond={bondData} />
-        )} */}
+        )}
       </div>
 
       <style jsx>

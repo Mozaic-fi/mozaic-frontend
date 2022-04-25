@@ -3,18 +3,10 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 import { useState } from 'react';
 import Separator from '../../components/commons/Separator';
+import { infoData, logData, weeks } from '../../data/StakeData';
 
 const Stake = () => {
   const { width } = useWindowDimensions();
-
-  const weeks: any = [
-    { id: 1, value: 1, name: ['1 Week', '1W'] },
-    { id: 2, value: 4, name: ['1 Month', '1M'] },
-    { id: 3, value: 13, name: ['3 Months', '3M'] },
-    { id: 4, value: 26, name: ['6 Months', '6M'] },
-    { id: 5, value: 52, name: ['1 Year', '1Y'] },
-    { id: 6, value: 208, name: ['4 years', '4Y'] },
-  ];
 
   const [stake, setStake] = useState({
     amount: 0.0,
@@ -22,67 +14,6 @@ const Stake = () => {
     lockTime: '',
     week: 0,
   });
-
-  const logData = [
-    {
-      id: 1,
-      tokenName: 'MOZ',
-      tokenAmount: 1,
-      icoSrc: '/assets/icons/tokens/ico.token.moz.svg',
-      year: 4,
-      month: 0,
-      week: 0,
-      value: 1,
-      valueName: 'veMOZ',
-      isLocked: true,
-    },
-    {
-      id: 2,
-      tokenName: 'MOZ',
-      tokenAmount: 1,
-      icoSrc: '/assets/icons/tokens/ico.token.moz.svg',
-      year: 3,
-      month: 0,
-      week: 0,
-      value: 0.75,
-      valueName: 'veMOZ',
-      isLocked: true,
-    },
-    {
-      id: 3,
-      tokenName: 'MOZ',
-      tokenAmount: 1,
-      icoSrc: '/assets/icons/tokens/ico.token.moz.svg',
-      year: 2,
-      month: 0,
-      week: 0,
-      value: 0.5,
-      valueName: 'MOZ',
-      isLocked: true,
-    },
-    {
-      id: 4,
-      tokenName: 'MOZ',
-      tokenAmount: 1,
-      icoSrc: '/assets/icons/tokens/ico.token.moz.svg',
-      year: 2,
-      month: 0,
-      week: 0,
-      value: 0.25,
-      valueName: 'veMOZ',
-      isLocked: true,
-    },
-  ];
-
-  const infoData = {
-    veMozHolderAPY: 4.17,
-    veMozBalance: 0,
-    totalLockedMoz: 410098999.23,
-    totalVeMoz: 321131312.21,
-    averageLockTime: 3.64,
-    nextDistribution: 'Thu, 20 Feb 2022, 14:43:59 GMT',
-    tlv: 121232122.32,
-  };
 
   const setWeek = (week: any) => {
     setStake({ ...stake, week: week });
@@ -114,11 +45,11 @@ const Stake = () => {
                 <p className='tc-s log-ff'> {log.tokenName}&nbsp;</p>
               </div>
               <p className='tc-s log-ff'>
-                <span className='tc-p log-ff'>
+                <span className='tc-h log-ff'>
                   {log.isLocked ? 'LOCKED' : 'UNLOCKED'}{' '}
                 </span>
                 <span className='tc-s'>&nbsp; for &nbsp;</span>
-                <span className='tc-p log-ff'>
+                <span className='tc-h log-ff'>
                   {log.year
                     ? log.year + ' Year(s) '
                     : log.month
@@ -131,7 +62,7 @@ const Stake = () => {
                   {width > 560 && <span>&emsp;</span>} ={' '}
                   {width > 560 && <span>&emsp;&emsp;</span>}
                 </span>
-                <span className='tc-p log-ff'>
+                <span className='tc-h log-ff'>
                   {log.value}
                   {log.valueName}
                 </span>
@@ -144,20 +75,20 @@ const Stake = () => {
             <div className='w-100'>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>veMOZ Holder APY:</p>
-                <p className='tc-p t-b data'>{infoData.veMozHolderAPY}%</p>
+                <p className='tc-h fw-b data'>{infoData.veMozHolderAPY}%</p>
               </div>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>veMOZ Balance:</p>
-                <p className='tc-p t-b data'>{infoData.veMozBalance}</p>
+                <p className='tc-h fw-b data'>{infoData.veMozBalance}</p>
               </div>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>Total veMOZ:</p>
-                <p className='tc-p t-b data'>{infoData.totalVeMoz}</p>
+                <p className='tc-h fw-b data'>{infoData.totalVeMoz}</p>
               </div>
             </div>
             <div className='mb-5 '>
               <Link href='/staking-moz-guide'>
-                <a className='df-c fs-s tc-p link-container-right'>
+                <a className='df-c fs-s tc-h link-container-right'>
                   Guide to staking MOZ
                   <img
                     className='ml-1'
@@ -172,36 +103,36 @@ const Stake = () => {
             <div className='w-100'>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>Total MOZ Locked:</p>
-                <p className='tc-p t-b data'>{infoData.totalLockedMoz}</p>
+                <p className='tc-h fw-b data'>{infoData.totalLockedMoz}</p>
               </div>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>Average Lock Time:</p>
-                <p className='tc-p t-b data'>
+                <p className='tc-h fw-b data'>
                   {infoData.averageLockTime} Years
                 </p>
               </div>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>Next Distribution:</p>
-                <p className='tc-p t-b data'>{infoData.nextDistribution}</p>
+                <p className='tc-h fw-b data'>{infoData.nextDistribution}</p>
               </div>
               <div className='df-sb mb-2'>
                 <p className='tc-s'>TLV:</p>
-                <p className='tc-p t-b data'>${infoData.tlv}</p>
+                <p className='tc-h fw-b data'>${infoData.tlv}</p>
               </div>
             </div>
           </div>
         </div>
         <Separator />
         <div>
-          <div className='stake-form-container'>
+          <div className='stake-form-container rounded'>
             <div className='df-sb mb-2 stake-input-container'>
               <label className='fs-m' htmlFor='amount'>
                 Amount
               </label>
-              <div className='input-container'>
+              <div className='input-container rounded'>
                 <input
                   placeholder='0.00'
-                  className='fs-l ff-2 tc-p'
+                  className='fs-l ff-2 tc-h'
                   id='amount'
                   onChange={(e: any) =>
                     setStake({ ...stake, amount: e.target.value })
@@ -223,9 +154,9 @@ const Stake = () => {
               <label className='fs-m' htmlFor='lock-time'>
                 Choose Lock Time
               </label>
-              <div className='input-container'>
+              <div className='input-container rounded'>
                 <input
-                  className='fs-l ff-2 tc-p'
+                  className='fs-l ff-2 tc-h'
                   id='lock-time'
                   type='date'
                   onChange={(e) =>
@@ -263,7 +194,7 @@ const Stake = () => {
               />
               <div className='info df-c'>
                 <p className='tc-s fs-xs'>
-                  <span className='tc-p fs-xs t-b'>{stake.week}</span> Week(s)
+                  <span className='tc-h fs-xs fw-b'>{stake.week}</span> Week(s)
                 </p>
               </div>
             </div>
@@ -358,20 +289,6 @@ const Stake = () => {
             justify-content: ${width > 480 ? 'start' : 'end'};
           }
 
-          .max-btn {
-            height: 60%;
-            padding-left: 8px;
-            padding-right: 8px;
-            color: rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-          }
-
-          .max-btn.active {
-            color: #ffbb00;
-            background-color: #ffbb0010;
-          }
-
           .stake-form-container {
             display: flex;
             flex-direction: column;
@@ -387,6 +304,7 @@ const Stake = () => {
 
           .range-container {
             flex-wrap: wrap;
+            gap: 10px;
           }
 
           .range-selector-btn {
@@ -394,16 +312,9 @@ const Stake = () => {
             box-sizing: border-box;
             justify-content: center;
             align-items: center;
-            width: ${width > 1195
-              ? '140px'
-              : width > 600
-              ? '30%'
-              : width > 430
-              ? '45%'
-              : '20%'};
+            width: ${width > 600 ? '32%' : width > 430 ? '48%' : '20%'};
             padding: 16px 30px;
             border-radius: 30px;
-            margin: 8px;
           }
 
           .range-input-container {

@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.w-50 {
+  width: 50%;
+}
+
 .h-100 {
   height: 100%;
 }
@@ -281,6 +285,32 @@
   align-items: center;
 }
 
+.df-l {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.df-la {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: left;
+}
+
+.df-ra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: right;
+}
+.df-ca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .df {
   display: flex;
 }
@@ -317,6 +347,44 @@
 
 .ai-s {
   align-items: start;
+}
+
+.fd-c {
+  flex-direction: column;
+}
+
+.df-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.ai-s {
+  align-items: flex-start;
+}
+
+.ai-e {
+  align-items: flex-end;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-s {
+  justify-content: flex-start;
+}
+
+.jc-e {
+  justify-content: flex-end;
+}
+
+.flex-1 {
+  flex: 1;
 }
 
 /* text align */

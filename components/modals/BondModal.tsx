@@ -37,13 +37,13 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
                       />
                     </span>{' '}
                   </p>
-                  <h1 className='num-display ff-1 tc-p fs-xxxl'>
+                  <h1 className='num-display ff-1 tc-p fs-xxl'>
                     ${bond.price}
                   </h1>
                 </div>
                 <div className='df-la'>
                   <p className='t-b'>Market Price</p>
-                  <h1 className='num-display ff-1 tc-p fs-xxxl'>
+                  <h1 className='num-display ff-1 tc-p fs-xxl'>
                     ${bond.marketPrice}
                   </h1>
                 </div>
@@ -62,7 +62,7 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
                 <CardContent
                   title='Vested for 7 Days'
                   titleClass='tc-s fs-s ff-d'
-                  icoSrc='/assets/icons/ico.time.svg'
+                  icoSrc='/assets/icons/bond/ico.time.svg'
                 />
                 <CardContent
                   title='You Get'
@@ -80,7 +80,7 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
                   >
                     Approve Bond Contract
                   </button>
-                  <p className='t-ac fs-xs tc-s'>
+                  <p className='ta-c fs-xs tc-s'>
                     Important: The approve contract is needed when bonding for
                     the first time; Subsequent bonding only requires you to
                     perform the BOND request.
@@ -90,7 +90,7 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
                 <div
                   className={`mt-3 mb-2 ${width > 400 ? 'df-sb' : 'df fd-c'}`}
                 >
-                  <div className='input-container'>
+                  <div className='input-container rounded'>
                     <input
                       placeholder='0.00'
                       className='fs-l ff-2 tc-p'
@@ -119,26 +119,13 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
               )}
               <div>
                 <ListDetail
-                  infoText='hello'
                   title='Your Balance'
                   description={`0.0 ${bond.bondName} Bond`}
                 />
-                <ListDetail
-                  infoText='hello'
-                  title='You’ll Get'
-                  description={`0.0 MOZ`}
-                />
-                <ListDetail
-                  infoText='hello'
-                  title='Max'
-                  description={`0.123 MOZ`}
-                />
-                <ListDetail infoText='hello' title='ROI' description={`123%`} />
-                <ListDetail
-                  infoText='hello'
-                  title='Vesting Term'
-                  description={`7 Days`}
-                />
+                <ListDetail title='You’ll Get' description={`0.0 MOZ`} />
+                <ListDetail title='Max' description={`0.123 MOZ`} />
+                <ListDetail title='ROI' description={`123%`} />
+                <ListDetail title='Vesting Term' description={`7 Days`} />
                 <ListDetail
                   title='Bond Contract'
                   description='view'
@@ -185,7 +172,7 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
                 <p className='t-ar t-b'>7 Days</p>
               </div>
             </div>
-            <p className='tc-s fs-xs t-ac mb-5'>
+            <p className='tc-s fs-xs ta-c mb-5'>
               Visit Mozaic anytime to claim your vested portion. The bond will
               fully vested in 7 days.
             </p>
@@ -203,13 +190,14 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
       <style jsx>
         {`
           .bond-modal-container {
-            max-height: 70vh;
-            ${width > 500 ? 'overflow: visible;' : 'overflow: auto;'}
+            max-height: 65vh;
+            overflow: ${width > 500 ? 'visible;' : 'auto'};
           }
 
           .card-content-bg {
             background-color: rgba(255, 255, 255, 0.1);
-            ${width > 500 && 'margin-left: -24px; margin-right: -24px;'}
+            margin-left: ${width > 500 ? '-24px' : '0'};
+            margin-right: ${width > 500 ? '-24px' : '0'};
           }
 
           .input-container input {
@@ -231,7 +219,8 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
             width: ${width > 590 ? 'auto' : '100%'};
             padding-right: 8px;
             flex-grow: 1;
-            ${width > 400 ? 'margin-right: 10px' : 'margin-bottom: 16px'};
+            margin-right: ${width > 400 ? '10px' : '0'};
+            margin-bottom: ${width > 400 ? '0px' : '16px'};
           }
 
           input::-webkit-outer-spin-button,
@@ -252,20 +241,6 @@ const BondModal = ({ closeModal, bond, userData }: any) => {
             padding: 0px;
             margin: 0px;
             margin-top: 10px;
-          }
-
-          .max-btn {
-            height: 60%;
-            padding-left: 8px;
-            padding-right: 8px;
-            color: rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-          }
-
-          .max-btn.active {
-            color: #ffbb00;
-            background-color: #ffbb0010;
           }
         `}
       </style>

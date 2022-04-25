@@ -50,7 +50,7 @@ const Table = ({ titles, items }: any) => {
               <td>
                 <div className='table-body token-name'>
                   <img className='mr-2' src={item.icoSrc} alt='' />
-                  <p>{item.name}</p>
+                  <p>{item.symbol}</p>
                 </div>
               </td>
               <td>

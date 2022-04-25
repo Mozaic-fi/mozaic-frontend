@@ -100,7 +100,7 @@ const MyBondTable = ({
                   }`}
                 >
                   {width > 650 &&
-                    item.icoSrc.map((ico: any, i: any) => (
+                    item.icoSrc.map((ico: any, i: number) => (
                       <img className='ico' key={i} src={ico} alt='' />
                     ))}
                   <p className='js-c'>{item.bondName}</p>
@@ -110,7 +110,7 @@ const MyBondTable = ({
                 <>
                   <td>
                     <div className='table-body'>
-                      {width > 630 && (
+                      {width > 700 && (
                         <img
                           className='ico'
                           src='/assets/icons/tokens/ico.token.moz.svg'
@@ -130,15 +130,15 @@ const MyBondTable = ({
                 <td>
                   <div className='table-body df-c'>
                     <div style={{ marginRight: 0 + '!important' }}>
-                      <p className='fs-xs mr-0'>
+                      <p className='fs-xs tc-s mr-0'>
                         Claimable:{' '}
-                        <span className='t-b tc-p fs-xs'>
+                        <span className='fw-b tc-p fs-xs'>
                           {item.claimable}%
                         </span>
                       </p>
-                      <p className='fs-xs mr-0'>
+                      <p className='fs-xs tc-s mr-0'>
                         Pending:{' '}
-                        <span className='t-b tc-p fs-xs'>{item.pending}</span>
+                        <span className='fw-b tc-p fs-xs'>{item.pending}</span>
                       </p>
                     </div>
                   </div>
@@ -147,7 +147,7 @@ const MyBondTable = ({
               <td>
                 <div className='table-body df ai-c jc-c'>
                   <div className='df-ca df fd-c ai-c jc-c mr-0'>
-                    <p className='t-ac mr-0 w-100'>
+                    <p className='ta-c mr-0 w-100'>
                       {item.vestingTime} {width > 450 ? 'Weeks' : 'W'}
                     </p>
                   </div>
@@ -155,7 +155,7 @@ const MyBondTable = ({
               </td>
               <td>
                 <div className='table-body  tc-s df ai-c jc-e'>
-                  {width > 560 ? (
+                  {width > 580 ? (
                     <button
                       onClick={() => {
                         claimBond(item.id);
@@ -192,8 +192,12 @@ const MyBondTable = ({
           }
 
           .table-body .token-name {
-            flex-direction: ${width < 620 ? 'column' : 'row'};
+            flex-direction: ${width < 600 ? 'column' : 'row'};
             flex-direction: row;
+          }
+
+          .table-body .token-name > p {
+            font-size: 1rem;
           }
 
           td,

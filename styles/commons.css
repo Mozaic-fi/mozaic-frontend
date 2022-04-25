@@ -212,7 +212,7 @@
 
 .btn-primary {
   padding: 15px 30px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   color: var(--primaryColor);
   font-size: 14px;
   font-weight: bold;
@@ -227,6 +227,21 @@
 .btn-primary:hover {
   background-color: var(--primaryColor);
   color: var(--bgPrimary);
+}
+
+.max-btn {
+  height: 60%;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.max-btn.active {
+  color: var(--primaryColor);
+  background-color: #ffbb0010;
 }
 
 /* separator */

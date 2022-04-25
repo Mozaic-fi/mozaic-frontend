@@ -6,14 +6,6 @@ import Separator from '../../commons/Separator';
 const AvailableBondTable = ({ items, openBond }: any) => {
   const { height, width } = useWindowDimensions();
 
-  const [maxAllocation, setMaxAllocation] = useState(0);
-
-  // useEffect(() => {
-  //     let max = 0;
-  //     items.map((item) => item.allocation > max ? max = item.allocation : max)
-  //     setMaxAllocation(max)
-  // }, [])
-
   return (
     <>
       <Separator />
@@ -87,7 +79,7 @@ const AvailableBondTable = ({ items, openBond }: any) => {
               </td>
               <td>
                 <div className='table-body'>
-                  {width > 630 && (
+                  {width > 700 && (
                     <img
                       className='ico'
                       src='/assets/icons/tokens/ico.token.moz.svg'
@@ -107,7 +99,7 @@ const AvailableBondTable = ({ items, openBond }: any) => {
                       <p
                         style={
                           item.roi < 0
-                            ? { color: '#EE3458', margin: 0 }
+                            ? { color: 'var(--alert)', margin: 0 }
                             : { margin: 0 }
                         }
                       >
@@ -118,7 +110,7 @@ const AvailableBondTable = ({ items, openBond }: any) => {
                   <td>
                     <div className='table-body df ai-c jc-c'>
                       <div className='df-ca df fd-c ai-c jc-c mr-0'>
-                        <p className='t-ac mr-0 w-100'>{item.tbv}</p>
+                        <p className='ta-c mr-0 w-100'>{item.tbv}</p>
                         {width > 530 && (
                           <ProgressBar maxCap={100} currDep={50} />
                         )}
@@ -142,7 +134,7 @@ const AvailableBondTable = ({ items, openBond }: any) => {
               )}
               <td>
                 <div className='table-body  tc-s df ai-c jc-e'>
-                  {width > 560 ? (
+                  {width > 580 ? (
                     <button
                       onClick={() => {
                         openBond(item.id);
