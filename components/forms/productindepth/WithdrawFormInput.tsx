@@ -5,7 +5,6 @@ import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 
 export default function WithdrawFormInput({
   index,
-  form = 'withdraw',
   formType = 'single',
   availableTokens,
   setFromDropdown = false,

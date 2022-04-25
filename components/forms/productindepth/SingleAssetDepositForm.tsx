@@ -14,7 +14,7 @@ const SingleAssetDepositForm = ({
   const [currentToken, setCurrentToken] = useState(availableToken[0]);
   const [calculatedAmount, setCalculatedAmount] = useState<any>(0);
 
-  // calculate amount for Deposital
+  // calculate amount for Deposit
 
   const calculateAmount = (amount: number, rate: number) => {
     const calculatedAmount = amount * rate;
@@ -80,7 +80,6 @@ const SingleAssetDepositForm = ({
         </div>
 
         <DepositFromInput
-          form='deposit'
           type='input'
           availableTokens={availableToken}
           currentToken={currentToken}
@@ -101,7 +100,6 @@ const SingleAssetDepositForm = ({
           </label>
         </div>
         <DepositFromInput
-          form='deposit'
           availableTokens={availableToken}
           type={'output'}
           vault={vault}

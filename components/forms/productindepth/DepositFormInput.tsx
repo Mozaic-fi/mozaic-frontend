@@ -5,7 +5,6 @@ import DropdownWithIcons from '../../commons/dropdown/DropdownWithIcons';
 
 export default function DepositFromInput({
   index,
-  form = 'withdraw',
   formType = 'single',
   availableTokens,
   setFromDropdown = false,
@@ -18,14 +17,13 @@ export default function DepositFromInput({
   onChange,
 }: {
   index?: number;
-  form?: string;
   formType?: string;
   availableTokens?: object[];
   token?: any;
   setFromDropdown?: boolean;
   type?: string;
   input?: boolean;
-  setData?: SetStateAction<any>;
+  setData?: SetStateAction<any> | object;
   currentToken?: any;
   setCurrentToken?: SetStateAction<any>;
   vault?: any;
@@ -36,34 +34,13 @@ export default function DepositFromInput({
   const [showList, setShowList] = useState(false);
   const [amount, setAmount] = useState<any>(0);
   const [maxBalance] = useBalance(
-    type !== 'input'
-      ? form === 'withdraw'
-        ? currentToken.address
-        : vault.address
-      : form === 'withdraw'
-      ? vault.address
-      : currentToken.address,
-    type !== 'input'
-      ? form === 'withdraw'
-        ? currentToken.decimals
-        : vault.decimals
-      : form === 'withdraw'
-      ? vault.decimals
-      : currentToken.decimals
+    type !== 'input' ? vault.address : currentToken.address,
+    type !== 'input' ? vault.decimals : currentToken.decimals
   );
   const handleTokenSelection = () => setShowList(!showList);
 
   useEffect(() => {
-    if (form === 'withdraw') {
-      setData({
-        id: uuidv4(),
-        name: type !== 'input' ? currentToken.name : vault.name,
-        symbol: type !== 'input' ? currentToken.symbol : vault.symbol,
-        address: type !== 'input' ? currentToken.address : vault.address,
-        decimals: type !== 'input' ? currentToken.decimals : vault.decimals,
-        amount: type !== 'input' ? calculatedAmount : amount,
-      });
-    } else if (form === 'deposit') {
+    if (index === undefined) {
       setData({
         id: uuidv4(),
         name: type !== 'input' ? vault.name : currentToken.name,
@@ -72,6 +49,17 @@ export default function DepositFromInput({
         decimals: type !== 'input' ? vault.decimals : currentToken.decimals,
         amount: type !== 'input' ? calculatedAmount : amount,
       });
+    } else if (index !== undefined && formType === 'multi') {
+      setData[index] = {
+        id: uuidv4(),
+        name: currentToken.name,
+        symbol: currentToken.symbol,
+        address: currentToken.address,
+        decimals: currentToken.decimals,
+        amount: amount,
+        rateVault: currentToken.rateVault,
+        icoSrc: currentToken.icoSrc,
+      };
     }
   }, [amount, currentToken, vault, calculatedAmount]);
 
@@ -84,10 +72,7 @@ export default function DepositFromInput({
           id='amount'
           onChange={(e) => {
             setAmount(e.target.value);
-            if (onChange && index === undefined) {
-              onChange(e.target.value);
-            }
-            if (onChange && index !== undefined && form === 'deposit') {
+            if (onChange && index !== undefined) {
               onChange(index, e.target.value);
             }
           }}

@@ -12,9 +12,10 @@ const MultiAssetDepositForm = ({
   const { width, height } = useWindowDimensions();
   const [isValueEditor, setValueEditor] = useState<boolean>(false);
   const [calculatedAmount, setCalculatedAmount] = useState<any>(0);
+  let [data, setData] = useState<any>([]);
 
   const [to, setTo] = useState<any>();
-  const [from, setFrom] = useState<any>();
+  const [from, setFrom] = useState<any>([]);
 
   const setSlippage = (value: number) => {
     setMultiAssetDeposit({ ...multiAssetDeposit, slippage: value });
@@ -25,13 +26,13 @@ const MultiAssetDepositForm = ({
   };
 
   const onChange = (i: number, value: any): any => {
-    let data: any = [];
     data[i] = value * multiAssetDeposit.from[i].rateVault;
     let sum = 0;
     for (let i = 0; i < data.length; i++) {
       sum = sum + parseFloat(data[i]);
     }
     setCalculatedAmount(sum);
+    setMultiAssetDeposit({ ...multiAssetDeposit, from: from });
   };
 
   useEffect(() => {
@@ -80,12 +81,11 @@ const MultiAssetDepositForm = ({
             <React.Fragment key={token.address}>
               <DepositFromInput
                 index={i}
-                form='deposit'
                 formType='multi'
                 type='input'
                 currentToken={token}
                 vault={vault}
-                setData={setFrom}
+                setData={from}
                 onChange={onChange}
               />
             </React.Fragment>
@@ -105,7 +105,6 @@ const MultiAssetDepositForm = ({
         </div>
         <div className='multi-token-container'>
           <DepositFromInput
-            form='deposit'
             type='output'
             vault={vault}
             setData={setTo}
